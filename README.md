@@ -1,2 +1,2 @@
-# controle_lab
-Sistema Gerenciador de Laboratórios
+# Sistema Gerenciador de Laboratórios
+sistema de controle Laboratórios da facudade Pitagoras
