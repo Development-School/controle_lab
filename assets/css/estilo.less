@@ -1,0 +1,111 @@
+
+//**** Cores *******//
+@cor_principal:rgb(175, 239, 239);
+@cor_secundaria:rgb(116, 127, 212);
+@cor_meio: (@cor_principal + @cor_secundaria)/2;
+@cor_texto: rgb(0, 0, 0);
+@branco: rgb(255, 255, 255);
+
+//***** Tipografia ****//
+@fonte: Cambria;
+@fonte2: arial;
+
+
+.gradient (@startColor: #b1b1b1; @endColor: white) {
+	background-color: @startColor;
+	background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+	background: -webkit-linear-gradient(top, @startColor, @endColor);
+	background: -moz-linear-gradient(top, @startColor, @endColor);
+	background: -ms-linear-gradient(top, @startColor, @endColor);
+	background: -o-linear-gradient(top, @startColor, @endColor);
+}
+
+.horizontal-gradient (@startColor: #eee, @endColor: white) {
+ 	background-color: @startColor;
+	background-image: -webkit-gradient(linear, left top, right top, from(@startColor), to(@endColor));
+	background-image: -webkit-linear-gradient(left, @startColor, @endColor);
+	background-image: -moz-linear-gradient(left, @startColor, @endColor);
+	background-image: -ms-linear-gradient(left, @startColor, @endColor);
+	background-image: -o-linear-gradient(left, @startColor, @endColor);
+}
+
+.centerbtn (@largura: 170px){
+	left: 50%;
+  	margin-left: -(@largura/2); /* A metade de sua largura. */
+ 	position: relative;
+  	width: @largura; /* O valor que você desejar para largura. */
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+  a{
+  	color: @branco;
+  } 
+}
+
+body{
+  font-family: @fonte, Georgia, serif;
+  //background-image: url(../imgs/paper.jpg);
+  color: @branco; 
+  .horizontal-gradient (@cor_principal; @cor_secundaria);
+  padding-top: 20px;
+  margin: 0 0 75px;        	  
+}
+
+.btn-outline-inverse{
+	font: @fonte2 15px;
+	margin-bottom: 5px;
+	letter-spacing: 1px;
+	//.centerbtn;
+	font-weight: bolder;
+	color:@branco;
+	background-color:transparent;
+	border-color:@branco;
+	text-shadow: 
+  		2px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+.btn-outline-inverse:active,
+.btn-outline-inverse:focus,
+.btn-outline-inverse:hover{
+  color: @cor_meio;   
+  text-shadow:none;
+  background-color:@branco;
+  border-color:@branco; 
+}
+
+h1{
+	padding-top: 80px;
+    letter-spacing: -1px;
+  	line-height: 1;
+	text-shadow: 
+		2px 1px 0px @cor_meio, 
+		5px 4px 0px rgba(0, 0, 0, 0.15);
+	margin: 0 0 15px;              	
+}
+
+
+legend{  
+  font-size: 20px;
+  font-style: italic;
+  letter-spacing: 1px;
+  color:@branco;
+  text-shadow:   		
+  		2px 1px 0px rgba(0, 0, 0, 0.5);  
+}
+
+/*Rodapé do Site*/
+.main{
+  padding-bottom: 450px;
+}
+
+footer{
+  	margin: 0 auto;  
+	position: absolute;
+	bottom: 0px;  
+	width: 100%;
+	height: 25px; 
+	margin-left: auto;
+	margin-right: auto; 
+}
