@@ -29,20 +29,30 @@ class Reserva extends CI_Model {
    * de laboratorios por usuario
    */
   public function list_reserva($idusuario){  
-  $this->db->select('
-    tbllaboratorio.labnome,  
-    tbldisciplina.disciplinadesc, 
-    tblturno.turnodesc, 
-    tblreserva.data_aula              
-    ');
-  $this->db->from('tblreserva');          
-  $this->db->join('tblusuario', 'tblreserva.usuarioid = tblusuario.usuarioid','inner');
-  $this->db->join('tbllaboratorio', 'tblreserva.labid = tbllaboratorio.labid','inner');
-  $this->db->join('tblturno', 'tblreserva.turnoid = tblturno.turnoid','inner');
-  $this->db->join('tbldisciplina', 'tblreserva.disciplinaid = tbldisciplina.disciplinaid','inner');
-  $this->db->where('tblreserva.usuarioid =', $idusuario);
-  $retono = $this->db->get();
-  return $this->arruma($retono);  
+    $this->db->select('
+      tbllaboratorio.labnome,  
+      tbldisciplina.disciplinadesc, 
+      tblturno.turnodesc, 
+      tblreserva.data_aula,              
+      tblreserva.reservaid,              
+      tblusuario.nome,              
+      tblreserva.descricao,              
+      tblunidade.unidadedesc,              
+      tblcurso.cursodesc,              
+      tblreserva.cursoid,              
+      tblperiodo.periododesc              
+      ');
+    $this->db->from('tblreserva');          
+    $this->db->join('tblusuario','tblreserva.usuarioid = tblusuario.usuarioid','inner');
+    $this->db->join('tbllaboratorio','tblreserva.labid = tbllaboratorio.labid','inner');
+    $this->db->join('tblunidade','tblreserva.unidadeid = tblunidade.unidadeid','inner');
+    $this->db->join('tblturno','tblreserva.turnoid = tblturno.turnoid','inner');
+    $this->db->join('tblperiodo','tblreserva.periodoid = tblperiodo.periodoid','inner');
+    $this->db->join('tblcurso','tblreserva.cursoid = tblcurso.cursoid','inner');
+    $this->db->join('tbldisciplina','tblreserva.disciplinaid = tbldisciplina.disciplinaid','inner');
+    $this->db->where('tblreserva.usuarioid =', $idusuario);
+    $retono = $this->db->get();
+    return $this->arruma($retono);  
   }
 
   /**
@@ -52,5 +62,14 @@ class Reserva extends CI_Model {
   function gettabela($tabela){    
     $retono = $this->db->get($tabela);
     return $this->arruma($retono);
+  }
+
+  /**
+   * @todo apaga reserva
+   * Esta Função apaga os dados de uma tabela
+   */
+  function apaga($id){    
+    $this->db->where('reservaid', $id);
+    return $this->db->delete('tblreserva');     
   }
 }

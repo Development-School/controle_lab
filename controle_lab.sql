@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 14-Jul-2015 às 23:40
+-- Generation Time: 17-Jul-2015 às 02:36
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('807bfde05927d33e5f948cb615e2fa18', '::1', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.132 Safari/537.36', 1436899849, 'a:4:{s:9:"user_data";s:0:"";s:2:"id";s:1:"1";s:4:"nome";s:25:"IVAN CABRAL BARRETO FILHO";s:6:"logado";b:1;}');
+('08dc7307721190abe34df7908cfed883', '::1', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36', 1437064211, 'a:4:{s:9:"user_data";s:0:"";s:2:"id";s:1:"1";s:4:"nome";s:25:"IVAN CABRAL BARRETO FILHO";s:6:"logado";b:1;}');
 
 -- --------------------------------------------------------
 
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `tbldisciplina` (
   `disciplinaid` int(11) NOT NULL AUTO_INCREMENT,
   `disciplinadesc` varchar(100) NOT NULL,
   PRIMARY KEY (`disciplinaid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Extraindo dados da tabela `tbldisciplina`
@@ -109,7 +109,22 @@ INSERT INTO `tbldisciplina` (`disciplinaid`, `disciplinadesc`) VALUES
 (1, 'Engenharia de Software'),
 (2, 'Anatomia'),
 (3, 'Analise de projetos'),
-(4, 'Desenho técnico');
+(4, 'Desenho técnico'),
+(5, 'Metodologia Cientifica'),
+(6, 'Banco de Dados 1'),
+(7, 'Banco de Dados 2'),
+(8, 'Calculo I'),
+(9, 'Calculo II'),
+(10, 'Engenharia de Software II'),
+(11, 'Analise de Projetos e Sistemas'),
+(12, 'Circuitos Digitais'),
+(13, 'Sistemas Operacionais'),
+(14, 'Analise de Algoritmos'),
+(15, 'Organização de Arquivos'),
+(16, 'Programação Orientada a Objetos'),
+(17, 'Programação para Web'),
+(18, 'Redes de Computadores 1'),
+(19, 'Sistemas Multimidia');
 
 -- --------------------------------------------------------
 
@@ -165,7 +180,7 @@ INSERT INTO `tblfiltroperiodo` (`cursoid`, `periodoid`) VALUES
 CREATE TABLE IF NOT EXISTS `tblgrade` (
   `cursoid` int(11) NOT NULL,
   `disciplinaid` int(11) NOT NULL,
-  PRIMARY KEY (`cursoid`),
+  UNIQUE KEY `cursoid` (`cursoid`,`disciplinaid`),
   KEY `disciplinaid` (`disciplinaid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -174,10 +189,26 @@ CREATE TABLE IF NOT EXISTS `tblgrade` (
 --
 
 INSERT INTO `tblgrade` (`cursoid`, `disciplinaid`) VALUES
-(4, 1),
-(22, 2),
-(13, 3),
-(2, 4);
+(9, 5),
+(4, 6),
+(4, 7),
+(4, 8),
+(9, 8),
+(4, 9),
+(9, 9),
+(4, 10),
+(4, 11),
+(4, 12),
+(9, 12),
+(4, 13),
+(4, 14),
+(4, 15),
+(4, 16),
+(4, 17),
+(4, 18),
+(9, 18),
+(4, 19),
+(9, 19);
 
 -- --------------------------------------------------------
 
@@ -195,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `tbllaboratorio` (
   KEY `tipolabid` (`tipolabid`,`unidadeid`),
   KEY `capacidade` (`capacidade`),
   KEY `unidadeid` (`unidadeid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Extraindo dados da tabela `tbllaboratorio`
@@ -203,7 +234,25 @@ CREATE TABLE IF NOT EXISTS `tbllaboratorio` (
 
 INSERT INTO `tbllaboratorio` (`labid`, `tipolabid`, `labnome`, `capacidade`, `unidadeid`) VALUES
 (1, 2, 'LABORATORIO DE FÍSICA I', 30, 1),
-(2, 2, 'LABORATÓRIO DE FÍSICA II', 25, 1);
+(2, 2, 'LABORATÓRIO DE FÍSICA II', 25, 1),
+(3, 3, 'Laboratorio de Quimica', NULL, 1),
+(4, 4, 'Laboratorio de Circuitos Elétricos', NULL, 2),
+(5, 5, 'Laboratorio de Eletrônica', NULL, 1),
+(6, 6, 'Laboratorio de Materiais de Construçao', NULL, 2),
+(7, 7, 'Analises Clinicas', NULL, 2),
+(8, 8, 'Bioquimica', NULL, 1),
+(9, 9, 'Bromatologia', NULL, 2),
+(10, 10, 'Condicionamento Operante', NULL, 2),
+(11, 11, 'Controle de Qualidade Biologico', NULL, 1),
+(12, 12, 'Fisiologia', NULL, 2),
+(13, 13, 'Microscopia', NULL, 2),
+(14, 14, 'Praticas de Enfermagem', NULL, 2),
+(15, 15, 'Primeiros Socorros', NULL, 2),
+(16, 16, 'Semiologia', NULL, 1),
+(17, 17, 'Anatomia', NULL, 1),
+(18, 18, 'Farmacotecnica', NULL, 2),
+(19, 19, 'Informatica', NULL, 1),
+(20, 19, 'Laboratorio  de Informatica', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -316,17 +365,14 @@ CREATE TABLE IF NOT EXISTS `tblreserva` (
   KEY `cursoid` (`cursoid`),
   KEY `periodoid` (`periodoid`),
   KEY `labid` (`labid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Extraindo dados da tabela `tblreserva`
 --
 
 INSERT INTO `tblreserva` (`reservaid`, `usuarioid`, `cursoid`, `disciplinaid`, `periodoid`, `turnoid`, `labid`, `unidadeid`, `descricao`, `data_reserva`, `data_aula`) VALUES
-(5, 1, 1, 1, 8, 2, 1, 1, 'ffffffffffffffffffffgsfd', '2015-07-14 17:52:07', '0000-00-00'),
-(6, 1, 17, 3, 3, 2, 2, 1, 'frsddsds', '2015-07-14 17:56:18', '0000-00-00'),
-(7, 1, 3, 2, 8, 1, 2, 1, 'gfdsgdsfsdfsd', '2015-07-14 17:58:47', '0000-00-00'),
-(8, 1, 3, 2, 8, 1, 2, 1, 'gfdsgdsfsdfsd', '2015-07-14 18:00:52', '0000-00-00');
+(9, 1, 16, 16, 9, 1, 16, 1, 'hjvbnvbnj', '2015-07-16 16:15:22', '2015-07-15');
 
 -- --------------------------------------------------------
 
@@ -448,7 +494,7 @@ CREATE TABLE IF NOT EXISTS `tblusuario` (
   PRIMARY KEY (`usuarioid`),
   UNIQUE KEY `cpf` (`cpf`),
   KEY `tipoid` (`tipoid`,`nome`,`matricula`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Extraindo dados da tabela `tblusuario`

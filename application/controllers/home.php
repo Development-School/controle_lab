@@ -58,7 +58,8 @@ class Home extends CI_Controller {
                 redirect(base_url("paineladm"));
                 }
             else{
-                redirect(base_url(),'refresh');
+                $data['erro'] = 'CPF ou Senha incorretos';
+                $this->load->view('login_de_usuario',$data);
             }
         }
     }
