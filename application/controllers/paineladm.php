@@ -26,8 +26,7 @@ class Paineladm extends CI_Controller {
     
     public function index() {
         $id = $this->session->userdata('id');
-        $this->load->model('reserva');
-        $dados['curso'] = $this->reserva->gettabela('tblcurso');
+        $this->load->model('reserva');        
         $dados['reservado'] = $this->reserva->list_reserva($id);
         $this->load->view('paineladm',$dados); 
     }

@@ -55,6 +55,33 @@ class Reserva extends CI_Model {
     return $this->arruma($retono);  
   }
 
+  public function reserva_dia($data){  
+    $this->db->select('
+      tbllaboratorio.labnome,  
+      tbldisciplina.disciplinadesc, 
+      tblturno.turnodesc, 
+      tblreserva.data_aula,              
+      tblreserva.reservaid,              
+      tblusuario.nome,              
+      tblreserva.descricao,              
+      tblunidade.unidadedesc,              
+      tblcurso.cursodesc,              
+      tblreserva.cursoid,              
+      tblperiodo.periododesc              
+      ');
+    $this->db->from('tblreserva');          
+    $this->db->join('tblusuario','tblreserva.usuarioid = tblusuario.usuarioid','inner');
+    $this->db->join('tbllaboratorio','tblreserva.labid = tbllaboratorio.labid','inner');
+    $this->db->join('tblunidade','tblreserva.unidadeid = tblunidade.unidadeid','inner');
+    $this->db->join('tblturno','tblreserva.turnoid = tblturno.turnoid','inner');
+    $this->db->join('tblperiodo','tblreserva.periodoid = tblperiodo.periodoid','inner');
+    $this->db->join('tblcurso','tblreserva.cursoid = tblcurso.cursoid','inner');
+    $this->db->join('tbldisciplina','tblreserva.disciplinaid = tbldisciplina.disciplinaid','inner');
+    $this->db->where('tblreserva.data_aula =', $data);
+    $retono = $this->db->get();
+    return $this->arruma($retono);  
+  }
+
   /**
    * @todo Pega info de tabela
    * Esta Função pega os dados de uma tabela

@@ -20,7 +20,7 @@ legend{
   color:#000;  
 }
 .date-input-buttons{
-  float:left;
+  float:right;
   margin-top: 8px;
 }
  
@@ -36,7 +36,7 @@ legend{
   margin-top: 35px;
 }
 footer{
-    margin: 0 auto;  
+  margin: 0 auto;  
   position: absolute;
   bottom: 0px;  
   width: 100%;

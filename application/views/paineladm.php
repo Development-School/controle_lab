@@ -56,7 +56,7 @@
                       <dt>Laboratório:</dt>
                       <dd>'.$reserva['labnome'].'</dd>
                       <dt>Data da Aula:</dt>
-                      <dd>'.strftime('%A, %d de %B de %Y', strtotime($reserva['data_aula'])).'</dd>
+                      <dd>'.strftime('%a, %d de %B de %Y', strtotime($reserva['data_aula'])).'</dd>
                       <dt>Descrição:</dt>
                       <dd>'.$reserva['descricao'].'</dd>
                     </dl> 
