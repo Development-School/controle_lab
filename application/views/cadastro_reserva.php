@@ -1,4 +1,4 @@
-<?= $this->load->view('head');//Chama a view head.html?>
+<?php $this->load->view('head');//Chama a view head.html?>
 
   <title>Reserva de Laboratórios</title>
   
@@ -149,4 +149,4 @@
   </div>
   </div>
 </div>
-<?= $this->load->view('footer');//Chama a view footer?>
+<?php $this->load->view('footer');//Chama a view footer?>

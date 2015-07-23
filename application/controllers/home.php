@@ -40,7 +40,7 @@ class Home extends CI_Controller {
 		$senha = $this->input->post('senha');
         
         //Carrega a Library de validação de cpf
-        $this->load->library('Validacaocpf');
+        $this->load->library('ValidacaoCPF');
         $msgerro = $this->validacaocpf->verificar($cpf);
         if($msgerro !== NULL){
             $data['erro'] = $msgerro;
@@ -53,7 +53,11 @@ class Home extends CI_Controller {
             if(count($usuario)===1){ // VERIFICA LOGIN E SENHA
                 //Adiciona o cpf ao cookie do usuario
                 $this->load->library('session');
-                $dados = array('id'=>$usuario[0]->usuarioid,'nome'=> $usuario[0]->nome,'logado'=>TRUE);//array com os dados do cookie
+                $dados = array(
+                    'id'=>$usuario[0]->usuarioid,
+                    'nome'=> $usuario[0]->nome,
+                    'logado'=>TRUE
+                );//array com os dados do cookie
                 $this->session->set_userdata($dados);//passando a array para o cookie 
                 redirect(base_url("paineladm"));
                 }

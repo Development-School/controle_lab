@@ -9,7 +9,7 @@
  * @link		http://www.semanatrans.esy.es
  */
  
-class Validacaocpf {
+class ValidacaoCPF {
 
     public function verificar($cpf){ 
 	// Elimina possivel mascara          

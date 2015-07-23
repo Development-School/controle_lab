@@ -1,4 +1,4 @@
-<?= $this->load->view('head');//Chama a view head.html?>
+<?php $this->load->view('head');//Chama a view head.html?>
 
   <title>Sistema Gerenciador de Laboratórios</title>  
  
@@ -88,4 +88,4 @@
   </div>
 </div>
 </body>
-<?= $this->load->view('footer');//Chama a view footer?>
+<?php $this->load->view('footer');//Chama a view footer?>
