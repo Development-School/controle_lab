@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.4.9
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 17-Jul-2015 às 02:36
+-- Generation Time: 23-Jul-2015 às 20:45
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `controle_lab`
@@ -29,21 +29,20 @@ USE `controle_lab`;
 --
 
 CREATE TABLE IF NOT EXISTS `ci_sessions` (
-  `session_id` varchar(40) NOT NULL DEFAULT '0',
-  `ip_address` varchar(45) NOT NULL DEFAULT '0',
-  `user_agent` varchar(120) NOT NULL,
-  `last_activity` int(10) unsigned NOT NULL DEFAULT '0',
-  `user_data` text NOT NULL,
-  PRIMARY KEY (`session_id`),
-  KEY `last_activity_idx` (`last_activity`)
+  `id` varchar(40) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `timestamp` int(10) unsigned NOT NULL DEFAULT '0',
+  `data` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `ci_sessions`
 --
 
-INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('08dc7307721190abe34df7908cfed883', '::1', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36', 1437064211, 'a:4:{s:9:"user_data";s:0:"";s:2:"id";s:1:"1";s:4:"nome";s:25:"IVAN CABRAL BARRETO FILHO";s:6:"logado";b:1;}');
+INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
+('656488a66a126223f5330b030dd66c45384eebd7', '::1', 1437692889, 0x5f5f63695f6c6173745f726567656e65726174657c693a313433373639323837383b69647c733a313a2231223b6e6f6d657c733a32353a224956414e2043414252414c204241525245544f2046494c484f223b6c6f6761646f7c623a313b),
+('9de83b2bf5c43aef5c23a9ae61998a054c46fb84', '::1', 1437693574, 0x5f5f63695f6c6173745f726567656e65726174657c693a313433373639333537323b69647c733a313a2231223b6e6f6d657c733a32353a224956414e2043414252414c204241525245544f2046494c484f223b6c6f6761646f7c623a313b),
+('fe7c64a94c4827f336fa85c79c25a502a7afd1af', '::1', 1437693557, 0x5f5f63695f6c6173745f726567656e65726174657c693a313433373639333235373b69647c733a313a2231223b6e6f6d657c733a32353a224956414e2043414252414c204241525245544f2046494c484f223b6c6f6761646f7c623a313b);
 
 -- --------------------------------------------------------
 
@@ -52,10 +51,9 @@ INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activ
 --
 
 CREATE TABLE IF NOT EXISTS `tblcurso` (
-  `cursoid` int(11) NOT NULL AUTO_INCREMENT,
-  `cursodesc` varchar(50) NOT NULL,
-  PRIMARY KEY (`cursoid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+  `cursoid` int(11) NOT NULL,
+  `cursodesc` varchar(50) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tblcurso`
@@ -96,10 +94,9 @@ INSERT INTO `tblcurso` (`cursoid`, `cursodesc`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tbldisciplina` (
-  `disciplinaid` int(11) NOT NULL AUTO_INCREMENT,
-  `disciplinadesc` varchar(100) NOT NULL,
-  PRIMARY KEY (`disciplinaid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+  `disciplinaid` int(11) NOT NULL,
+  `disciplinadesc` varchar(100) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tbldisciplina`
@@ -134,9 +131,7 @@ INSERT INTO `tbldisciplina` (`disciplinaid`, `disciplinadesc`) VALUES
 
 CREATE TABLE IF NOT EXISTS `tblfiltroperiodo` (
   `cursoid` int(11) NOT NULL,
-  `periodoid` int(11) NOT NULL,
-  PRIMARY KEY (`cursoid`),
-  KEY `periodoid` (`periodoid`)
+  `periodoid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -179,9 +174,7 @@ INSERT INTO `tblfiltroperiodo` (`cursoid`, `periodoid`) VALUES
 
 CREATE TABLE IF NOT EXISTS `tblgrade` (
   `cursoid` int(11) NOT NULL,
-  `disciplinaid` int(11) NOT NULL,
-  UNIQUE KEY `cursoid` (`cursoid`,`disciplinaid`),
-  KEY `disciplinaid` (`disciplinaid`)
+  `disciplinaid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -217,16 +210,12 @@ INSERT INTO `tblgrade` (`cursoid`, `disciplinaid`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tbllaboratorio` (
-  `labid` int(11) NOT NULL AUTO_INCREMENT,
+  `labid` int(11) NOT NULL,
   `tipolabid` int(11) NOT NULL,
   `labnome` varchar(50) NOT NULL,
   `capacidade` int(11) DEFAULT NULL,
-  `unidadeid` int(11) NOT NULL,
-  PRIMARY KEY (`labid`),
-  KEY `tipolabid` (`tipolabid`,`unidadeid`),
-  KEY `capacidade` (`capacidade`),
-  KEY `unidadeid` (`unidadeid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+  `unidadeid` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tbllaboratorio`
@@ -261,17 +250,13 @@ INSERT INTO `tbllaboratorio` (`labid`, `tipolabid`, `labnome`, `capacidade`, `un
 --
 
 CREATE TABLE IF NOT EXISTS `tblmaterial` (
-  `materialid` int(11) NOT NULL AUTO_INCREMENT,
+  `materialid` int(11) NOT NULL,
   `materialnome` varchar(200) NOT NULL,
   `quantidade` int(11) NOT NULL,
   `labid` int(11) NOT NULL,
   `tipolabid` int(11) NOT NULL,
-  `unidadeid` int(11) NOT NULL,
-  PRIMARY KEY (`materialid`),
-  KEY `tipolabid` (`tipolabid`),
-  KEY `unidadeid` (`unidadeid`),
-  KEY `labid` (`labid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+  `unidadeid` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tblmaterial`
@@ -318,10 +303,9 @@ INSERT INTO `tblmaterial` (`materialid`, `materialnome`, `quantidade`, `labid`, 
 --
 
 CREATE TABLE IF NOT EXISTS `tblperiodo` (
-  `periodoid` int(11) NOT NULL AUTO_INCREMENT,
-  `periododesc` varchar(20) NOT NULL,
-  PRIMARY KEY (`periodoid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+  `periodoid` int(11) NOT NULL,
+  `periododesc` varchar(20) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tblperiodo`
@@ -346,7 +330,7 @@ INSERT INTO `tblperiodo` (`periodoid`, `periododesc`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tblreserva` (
-  `reservaid` int(11) NOT NULL AUTO_INCREMENT,
+  `reservaid` int(11) NOT NULL,
   `usuarioid` int(11) NOT NULL,
   `cursoid` int(11) NOT NULL,
   `disciplinaid` int(11) NOT NULL,
@@ -356,23 +340,23 @@ CREATE TABLE IF NOT EXISTS `tblreserva` (
   `unidadeid` int(11) NOT NULL,
   `descricao` longtext NOT NULL,
   `data_reserva` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `data_aula` date NOT NULL,
-  PRIMARY KEY (`reservaid`),
-  KEY `usuarioid` (`usuarioid`,`cursoid`,`periodoid`,`turnoid`,`labid`),
-  KEY `instituicaoid` (`unidadeid`),
-  KEY `disciplinaid` (`disciplinaid`),
-  KEY `turnoid` (`turnoid`),
-  KEY `cursoid` (`cursoid`),
-  KEY `periodoid` (`periodoid`),
-  KEY `labid` (`labid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+  `data_aula` date NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tblreserva`
 --
 
 INSERT INTO `tblreserva` (`reservaid`, `usuarioid`, `cursoid`, `disciplinaid`, `periodoid`, `turnoid`, `labid`, `unidadeid`, `descricao`, `data_reserva`, `data_aula`) VALUES
-(9, 1, 16, 16, 9, 1, 16, 1, 'hjvbnvbnj', '2015-07-16 16:15:22', '2015-07-15');
+(9, 1, 16, 16, 9, 1, 16, 1, 'hjvbnvbnj', '2015-07-16 16:15:22', '2015-07-15'),
+(10, 6, 4, 16, 6, 1, 19, 1, 'teste', '2015-07-17 02:32:01', '2015-07-17'),
+(11, 6, 14, 4, 5, 2, 19, 2, 'teste', '2015-07-17 13:29:18', '2015-07-20'),
+(12, 6, 9, 1, 4, 2, 20, 2, 'teste driver', '2015-07-17 18:52:20', '2015-07-21'),
+(13, 1, 3, 4, 4, 2, 16, 1, 'teste', '2015-07-17 20:50:16', '2015-07-01'),
+(14, 6, 2, 3, 2, 2, 19, 2, 'teste', '2015-07-17 22:33:27', '2015-08-04'),
+(15, 6, 2, 3, 2, 1, 18, 1, 'teste', '2015-07-17 22:58:45', '2015-06-30'),
+(16, 6, 2, 3, 3, 2, 16, 2, 'teste', '2015-07-17 23:02:42', '2015-07-01'),
+(17, 1, 1, 13, 10, 3, 20, 2, 'Teste ', '2015-07-18 01:28:57', '2015-07-17');
 
 -- --------------------------------------------------------
 
@@ -381,10 +365,9 @@ INSERT INTO `tblreserva` (`reservaid`, `usuarioid`, `cursoid`, `disciplinaid`, `
 --
 
 CREATE TABLE IF NOT EXISTS `tbltipolab` (
-  `tipolabid` int(11) NOT NULL AUTO_INCREMENT,
-  `descricao` varchar(50) NOT NULL,
-  PRIMARY KEY (`tipolabid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+  `tipolabid` int(11) NOT NULL,
+  `descricao` varchar(50) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tbltipolab`
@@ -417,11 +400,9 @@ INSERT INTO `tbltipolab` (`tipolabid`, `descricao`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tbltipousuario` (
-  `tipoid` int(11) NOT NULL AUTO_INCREMENT,
-  `tipodesc` varchar(50) NOT NULL,
-  PRIMARY KEY (`tipoid`),
-  KEY `descricao` (`tipodesc`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `tipoid` int(11) NOT NULL,
+  `tipodesc` varchar(50) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tbltipousuario`
@@ -441,10 +422,9 @@ INSERT INTO `tbltipousuario` (`tipoid`, `tipodesc`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tblturno` (
-  `turnoid` int(11) NOT NULL AUTO_INCREMENT,
-  `turnodesc` varchar(50) NOT NULL,
-  PRIMARY KEY (`turnoid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `turnoid` int(11) NOT NULL,
+  `turnodesc` varchar(50) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tblturno`
@@ -462,11 +442,10 @@ INSERT INTO `tblturno` (`turnoid`, `turnodesc`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tblunidade` (
-  `unidadeid` int(11) NOT NULL AUTO_INCREMENT,
+  `unidadeid` int(11) NOT NULL,
   `unidadedesc` varchar(50) NOT NULL,
-  `localizacaodesc` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`unidadeid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `localizacaodesc` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tblunidade`
@@ -483,18 +462,15 @@ INSERT INTO `tblunidade` (`unidadeid`, `unidadedesc`, `localizacaodesc`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tblusuario` (
-  `usuarioid` int(11) NOT NULL AUTO_INCREMENT,
+  `usuarioid` int(11) NOT NULL,
   `tipoid` int(11) NOT NULL,
   `nome` varchar(75) NOT NULL,
   `cpf` varchar(11) NOT NULL,
   `senha` varchar(8) NOT NULL,
   `matricula` varchar(20) NOT NULL,
   `email` varchar(75) NOT NULL,
-  `contato` varchar(12) NOT NULL,
-  PRIMARY KEY (`usuarioid`),
-  UNIQUE KEY `cpf` (`cpf`),
-  KEY `tipoid` (`tipoid`,`nome`,`matricula`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+  `contato` varchar(12) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tblusuario`
@@ -508,6 +484,172 @@ INSERT INTO `tblusuario` (`usuarioid`, `tipoid`, `nome`, `cpf`, `senha`, `matric
 (5, 3, 'ROBERTO PIMENTEL', '23002576544', 'semsenha', '1111111', 'roberto@gmail.com', '988645321'),
 (6, 1, 'RODRIGO ALVES MESQUITA', '05065871345', '123', '321', 'rodrigo@gmail.com', '988645321');
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `ci_sessions`
+--
+ALTER TABLE `ci_sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ci_sessions_timestamp` (`timestamp`);
+
+--
+-- Indexes for table `tblcurso`
+--
+ALTER TABLE `tblcurso`
+  ADD PRIMARY KEY (`cursoid`);
+
+--
+-- Indexes for table `tbldisciplina`
+--
+ALTER TABLE `tbldisciplina`
+  ADD PRIMARY KEY (`disciplinaid`);
+
+--
+-- Indexes for table `tblfiltroperiodo`
+--
+ALTER TABLE `tblfiltroperiodo`
+  ADD PRIMARY KEY (`cursoid`),
+  ADD KEY `periodoid` (`periodoid`);
+
+--
+-- Indexes for table `tblgrade`
+--
+ALTER TABLE `tblgrade`
+  ADD UNIQUE KEY `cursoid` (`cursoid`,`disciplinaid`),
+  ADD KEY `disciplinaid` (`disciplinaid`);
+
+--
+-- Indexes for table `tbllaboratorio`
+--
+ALTER TABLE `tbllaboratorio`
+  ADD PRIMARY KEY (`labid`),
+  ADD KEY `tipolabid` (`tipolabid`,`unidadeid`),
+  ADD KEY `capacidade` (`capacidade`),
+  ADD KEY `unidadeid` (`unidadeid`);
+
+--
+-- Indexes for table `tblmaterial`
+--
+ALTER TABLE `tblmaterial`
+  ADD PRIMARY KEY (`materialid`),
+  ADD KEY `tipolabid` (`tipolabid`),
+  ADD KEY `unidadeid` (`unidadeid`),
+  ADD KEY `labid` (`labid`);
+
+--
+-- Indexes for table `tblperiodo`
+--
+ALTER TABLE `tblperiodo`
+  ADD PRIMARY KEY (`periodoid`);
+
+--
+-- Indexes for table `tblreserva`
+--
+ALTER TABLE `tblreserva`
+  ADD PRIMARY KEY (`reservaid`),
+  ADD KEY `usuarioid` (`usuarioid`,`cursoid`,`periodoid`,`turnoid`,`labid`),
+  ADD KEY `instituicaoid` (`unidadeid`),
+  ADD KEY `disciplinaid` (`disciplinaid`),
+  ADD KEY `turnoid` (`turnoid`),
+  ADD KEY `cursoid` (`cursoid`),
+  ADD KEY `periodoid` (`periodoid`),
+  ADD KEY `labid` (`labid`);
+
+--
+-- Indexes for table `tbltipolab`
+--
+ALTER TABLE `tbltipolab`
+  ADD PRIMARY KEY (`tipolabid`);
+
+--
+-- Indexes for table `tbltipousuario`
+--
+ALTER TABLE `tbltipousuario`
+  ADD PRIMARY KEY (`tipoid`),
+  ADD KEY `descricao` (`tipodesc`);
+
+--
+-- Indexes for table `tblturno`
+--
+ALTER TABLE `tblturno`
+  ADD PRIMARY KEY (`turnoid`);
+
+--
+-- Indexes for table `tblunidade`
+--
+ALTER TABLE `tblunidade`
+  ADD PRIMARY KEY (`unidadeid`);
+
+--
+-- Indexes for table `tblusuario`
+--
+ALTER TABLE `tblusuario`
+  ADD PRIMARY KEY (`usuarioid`),
+  ADD UNIQUE KEY `cpf` (`cpf`),
+  ADD KEY `tipoid` (`tipoid`,`nome`,`matricula`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tblcurso`
+--
+ALTER TABLE `tblcurso`
+  MODIFY `cursoid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
+--
+-- AUTO_INCREMENT for table `tbldisciplina`
+--
+ALTER TABLE `tbldisciplina`
+  MODIFY `disciplinaid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+--
+-- AUTO_INCREMENT for table `tbllaboratorio`
+--
+ALTER TABLE `tbllaboratorio`
+  MODIFY `labid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT for table `tblmaterial`
+--
+ALTER TABLE `tblmaterial`
+  MODIFY `materialid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
+--
+-- AUTO_INCREMENT for table `tblperiodo`
+--
+ALTER TABLE `tblperiodo`
+  MODIFY `periodoid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `tblreserva`
+--
+ALTER TABLE `tblreserva`
+  MODIFY `reservaid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT for table `tbltipolab`
+--
+ALTER TABLE `tbltipolab`
+  MODIFY `tipolabid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+--
+-- AUTO_INCREMENT for table `tbltipousuario`
+--
+ALTER TABLE `tbltipousuario`
+  MODIFY `tipoid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `tblturno`
+--
+ALTER TABLE `tblturno`
+  MODIFY `turnoid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `tblunidade`
+--
+ALTER TABLE `tblunidade`
+  MODIFY `unidadeid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `tblusuario`
+--
+ALTER TABLE `tblusuario`
+  MODIFY `usuarioid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
