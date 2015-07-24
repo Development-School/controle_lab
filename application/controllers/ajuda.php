@@ -13,14 +13,14 @@ class Ajuda extends CI_Controller {
      * Este Controller foi projetado para exibir os eventos!
      */
     public function __construct(){
-        parent::__construct();
-        /* Esta condição verifica se algum
-         * Usuario está logado
-         * Caso não esteja logado é carregada a view de login
-         */
-        if(!$this->session->userdata('logado')){            
-            redirect(base_url());            
-        }        
+      parent::__construct();
+      /* Esta condição verifica se algum
+       * Usuario está logado
+       * Caso não esteja logado é carregada a view de login
+       */           
+      if(!isset($_SESSION['logado'])){            
+        redirect(base_url());            
+      }        
     }
 
     public function index(){

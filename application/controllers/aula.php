@@ -13,15 +13,16 @@ class Aula extends CI_Controller {  /**
    */
   
   public function __construct(){
-      parent::__construct();
-      /* Esta condição verifica se algum
-       * Usuario está logado
-       * Caso não esteja logado é carregada a view de login
-       */
-      if(!$this->session->userdata('logado')){            
-          redirect(base_url());            
-      }        
+    parent::__construct();
+    /* Esta condição verifica se algum
+     * Usuario está logado
+     * Caso não esteja logado é carregada a view de login
+     */           
+    if(!isset($_SESSION['logado'])){            
+        redirect(base_url());            
+    }        
   }
+  
   public function index($ano= '',$mes = ''){
     $dados['reservado'] = '';
     $dados['calendario'] = $this->calendario($ano,$mes);
@@ -70,7 +71,7 @@ class Aula extends CI_Controller {  /**
     ';    
     $this->load->library('calendar', $prefs);
     $data = array();
-    for ($i= 1; $i < 32; $i++) {
+    for ($i= 1; $i <= $this->calendar->get_total_days($mes,$ano); $i++) {
       if ($i < 10) {
         $data += array($i => base_url('aula/reservas_dia').'/'.$ano.$mes.'0'.$i,);
       } 

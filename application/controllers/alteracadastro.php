@@ -13,16 +13,17 @@ class Alteracadastro extends CI_Controller {
      * Este Controller foi projetado para controlar a Alteração de Cadastro!
      */
     
-    public function __construct(){
+      public function __construct(){
         parent::__construct();
         /* Esta condição verifica se algum
          * Usuario está logado
          * Caso não esteja logado é carregada a view de login
-         */
-        if(!$this->session->userdata('logado')){            
+         */           
+        if(!isset($_SESSION['logado'])){            
             redirect(base_url());            
         }        
-    }
+      }
+
     public function index(){
         $id = $this->session->userdata('id');
         /*$this->db->where('id',$id); 

@@ -13,17 +13,17 @@ class Paineladm extends CI_Controller {
      * Este Controller foi projetado para ser a Home da Area Administrativa!
      */
     
-    public function __construct(){
-        parent::__construct();
-        /* Esta condição verifica se algum
-         * Usuario está logado
-         * Caso não esteja logado é carregada a view de login
-         */
-        if(!$this->session->userdata('logado')){            
-            redirect(base_url());            
-        }        
-    }
-    
+  public function __construct(){
+    parent::__construct();
+    /* Esta condição verifica se algum
+     * Usuario está logado
+     * Caso não esteja logado é carregada a view de login
+     */           
+    if(!isset($_SESSION['logado'])){            
+        redirect(base_url());            
+    }        
+  }
+
     public function index() {
         $id = $this->session->userdata('id');
         $this->load->model('reserva');        
