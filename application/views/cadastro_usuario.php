@@ -1,6 +1,6 @@
 <?php $this->load->view('head');//Chama a view head.html?>
 <?php if(!isset($tipouser)){$tipouser = '';}?>
-  <title>Reserva de Laboratórios</title>
+  <title>Cadastro de Usuario</title>
   
 </head>
 <body>

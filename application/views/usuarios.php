@@ -1,6 +1,6 @@
 <?php $this->load->view('head');//Chama a view head.html?>
 
-<title>Laboratórios</title>
+<title>Usuarios</title>
   <link rel="stylesheet" href="<?php echo base_url('assets/css/estilo.css') ?>" >
   <style>  
   .pdf {height:800px; width:100%;}
