@@ -10,7 +10,7 @@
   <div class="row">
   <div class="col-sm-12">    
     <?php 
-    echo form_open('cadastroreserva/receber','class="form-horizontal"'); 
+    echo form_open('Reserva_lab/receber','class="form-horizontal"'); 
     echo form_fieldset('Reserva de Laboratorio');
 
     //Definição para o Bootstrap

@@ -5,7 +5,7 @@
 	<script type="text/javascript">
 	/* Este codigo javascript redireciona a pagina para a home do site apos 3 segundos*/
 	setTimeout(function(){
-	  window.location.href = "<?php echo base_url('cadastroreserva')?>";
+	  window.location.href = "<?php echo base_url($local)?>";
 	},3000)
 	</script>
 </head>
@@ -15,7 +15,7 @@
 $dados['ativo'] = 0; $this->load->view('navbar',$dados);?>
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12">
-			<h1 class="text-center"><i class="fa fa-check fa-lg pull-left"> Cadastro Realizado!!</i></h1>			
+			<h1 class="text-center"><i class="fa fa-check fa-lg pull-left"><?php echo $mensagem; ?></i></h1>			
 		</div>
 	</div>
 </div>

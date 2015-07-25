@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Cadastroreserva extends CI_Controller {
+class Reserva_lab extends CI_Controller {
     /**
      * Cadastro Evento
      *
@@ -75,7 +75,9 @@ class Cadastroreserva extends CI_Controller {
 
         /* Chama a função inserir do modelo */
         if ($this->reserva->cadastro($data)) {
-          $this->load->view('mensagem_ok');
+          $dados['local'] = 'Paineladm';
+          $dados['mensagem'] = 'Reserva feita com sucesso!';
+          $this->load->view('mensagem_ok',$dados);
         } else {
           echo "error";
         }

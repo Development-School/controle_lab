@@ -11,7 +11,7 @@
       	<h1 class="text-center">Sistema Gerenciador de Laboratórios</h1>
       	<div class="form-group">        			
       		<?php		
-      		echo form_open('home/login','class="form-horizontal"'); 
+      		echo form_open('Login/logar','class="form-horizontal"'); 
       		echo form_fieldset('Efetuar Login');
           ?>
           <div class="form-group">
@@ -60,7 +60,7 @@
             </div>
             <?php
             //Imprime Mensagens de erro
-            if ($erro !== NULL) {
+            if (isset($erro)) {
               echo '<div class="alert alert-info alert-dismissible text-center" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>

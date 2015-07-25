@@ -38,5 +38,56 @@ class Usuarios extends CI_Model {
             $rows[] = $row; //adicionar o resultado buscado para o vetor rows;
         }
        return $rows; // retorna rows, e nao a variavel row
-    }     
+    }
+
+  function arruma($retono){
+    $rows = array(); //esta variavel manterá todos os resultados
+    foreach($retono->result_array() as $row){    
+      $rows[] = $row; //adicionar o resultado buscado para o vetor rows;
+    }
+   return $rows; // retorna rows, e nao a variavel row
+  }
+
+  public function list_usuarios(){  
+    $this->db->select('                   
+      tblusuario.usuarioid,              
+      tbltipousuario.tipodesc,              
+      tblusuario.tipoid,              
+      tblusuario.nome,              
+      tblusuario.cpf,              
+      tblusuario.senha,              
+      tblusuario.matricula,              
+      tblusuario.email,              
+      tblusuario.contato,              
+                   
+      ');
+    $this->db->from('tblusuario');          
+    $this->db->join('tbltipousuario','tblusuario.tipoid = tbltipousuario.tipoid','inner');  
+    $retono = $this->db->get();
+    return $this->arruma($retono);  
+  }
+
+  /**
+   * @todo Pega info de tabela
+   * Esta Função pega os dados de uma tabela
+   */
+  function gettabela($tabela){    
+    $retono = $this->db->get($tabela);
+    return $this->arruma($retono);
+  }
+  
+  /**
+   * @todo apaga reserva
+   * Esta Função apaga os dados de uma tabela
+   */
+  function apaga($id){    
+    $this->db->where('usuarioid', $id);
+    return $this->db->delete('tblusuario');     
+  }
+
+  function atualiza($id, $data){    
+    $this->db->where('usuarioid', $id);
+    return $this->db->update('tblusuario', $data);     
+  }
+       
 }

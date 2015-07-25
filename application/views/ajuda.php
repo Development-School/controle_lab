@@ -6,7 +6,7 @@
 <body>
   <div class="container main">
   <?php /* Chama a View da Barra de navegação*/
-  $dados['ativo'] = 5; $this->load->view('navbar',$dados);?>
+  $dados['ativo'] = 7; $this->load->view('navbar',$dados);?>
   <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12">
       

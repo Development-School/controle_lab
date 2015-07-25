@@ -33,7 +33,7 @@
           foreach($reservado as $reserva){
             echo '<dl class="dl-horizontal">
                       <dt>Data da Aula:</dt>
-                      <dd>'.strftime('%a, %d de %B de %Y', strtotime($reserva['data_aula'])).'</dd>
+                      <dd>'.utf8_encode(strftime('%A, %d de %B de %Y', strtotime($reserva['data_aula']))).'</dd>
                       <dt>Professor:</dt>
                       <dd>'.$reserva['nome'].'</dd>
                       <dt>Curso:</dt>
