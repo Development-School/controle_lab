@@ -17,7 +17,7 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li <?php if($ativo == 1){echo 'class="active"';}?>><a href="<?php echo base_url('paineladm');?>"><i class="fa fa-home fa-fw fa-lg"></i>&nbsp;Início</a></li>
-				<li <?php if($ativo == 2){echo 'class="active"';}?>><a href="<?php echo base_url('labs');?>"><i class="fa fa-flask fa-fw fa-lg"></i>&nbsp;Laboratorios</a></li>
+				<li <?php if($ativo == 2){echo 'class="active"';}?>><a href="<?php echo base_url('Labs');?>"><i class="fa fa-flask fa-fw fa-lg"></i>&nbsp;Laboratorios</a></li>
 				<li <?php if($ativo == 3){echo 'class="active"';}?>><a href="<?php echo base_url('Reserva_lab');?>"><i class="fa fa-check-square fa-fw fa-lg"></i>&nbsp;Reservas</a></li>
 				<li <?php if($ativo == 4){echo 'class="active"';}?>><a href="<?php echo base_url('aula');?>"><i class="fa fa-calendar fa-fw fa-lg"></i>&nbsp;Calendario</a></li>
 				<li <?php if($ativo == 5 or $ativo == 6){echo 'class="dropdown active"';} else{echo 'class="dropdown"';}?>>

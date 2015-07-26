@@ -25,8 +25,12 @@ class Labs extends CI_Controller {
   }
 
   public function index(){
-    $this->load->model('reserva');
-    $dados['lab'] = $this->reserva->gettabela('tbllaboratorio');
+    $this->load->model('Lab_model');
+    $unidade = $this->Lab_model->gettabela('tblunidade');
+    foreach ($unidade as $unidade) {
+      $dados['labs'][$unidade['unidadeid']] = $this->Lab_model->labs_unid($unidade['unidadeid']);
+    }
+    $dados['unidade'] = $this->Lab_model->gettabela('tblunidade');
     $this->load->view('laboratorios',$dados);
   }	
 }

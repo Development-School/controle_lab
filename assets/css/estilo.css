@@ -73,6 +73,41 @@ div+fieldset{
   text-align: right;
 }
 
+ /* Card, Dialog */
+.card {
+  position: relative;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+  background-color: #fff;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.ripple{
+  overflow:hidden;
+}
+.ripple-effect{
+  position: absolute;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background: white;    
+  animation: ripple-animation 2s;
+}
+
+@keyframes ripple-animation {
+  from {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  to {
+    transform: scale(100);
+    opacity: 0;
+  }
+}  
+
 
 /*Css que se aplica somente em tablets e desktop*/
 @media (min-width: 768px) {

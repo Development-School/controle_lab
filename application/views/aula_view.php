@@ -31,7 +31,7 @@
         <?php
         if($reservado){
           foreach($reservado as $reserva){
-            echo '<dl class="dl-horizontal">
+            echo '<dl class="dl-horizontal card ripple" data-ripple-color="#8ED8FF">
                       <dt>Data da Aula:</dt>
                       <dd>'.utf8_encode(strftime('%A, %d de %B de %Y', strtotime($reserva['data_aula']))).'</dd>
                       <dt>Professor:</dt>
