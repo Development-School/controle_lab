@@ -38,4 +38,9 @@ class Lab_model extends CI_Model {
     $retono = $this->db->get($tabela);
     return $this->arruma($retono);
   }
+
+  # CADASTRO DE labs
+  function cadastro($dados){      
+    return $this->db->insert('tbllaboratorio', $dados);
+  }
 }

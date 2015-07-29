@@ -40,6 +40,7 @@ class Reserva extends CI_Model {
       tblunidade.unidadedesc,              
       tblcurso.cursodesc,              
       tblreserva.cursoid,              
+      tblreserva.titulo_aula,              
       tblperiodo.periododesc              
       ');
     $this->db->from('tblreserva');          

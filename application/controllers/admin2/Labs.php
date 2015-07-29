@@ -18,10 +18,16 @@ class Labs extends CI_Controller {
     /* Esta condição verifica se algum
      * Usuario está logado
      * Caso não esteja logado é carregada a view de login
-     */           
+     * Caso o tipo não seja igual ao local da area admim
+     * o usuario e redirecionado
+     */
+    $local = 2;
+    $tipo = $_SESSION['tipo'];           
     if(!isset($_SESSION['logado'])){            
       redirect(base_url());            
-    }        
+    }elseif($tipo != $local){            
+      redirect(base_url());            
+    }      
   }
 
   public function index(){
@@ -31,6 +37,6 @@ class Labs extends CI_Controller {
       $dados['labs'][$unidade['unidadeid']] = $this->Lab_model->labs_unid($unidade['unidadeid']);
     }
     $dados['unidade'] = $this->Lab_model->gettabela('tblunidade');
-    $this->load->view('laboratorios',$dados);
-  }	
+    $this->load->view('admin2/laboratorios',$dados);
+  }  
 }

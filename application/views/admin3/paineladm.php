@@ -6,7 +6,7 @@
 <body>
 <div class="container main">
 	<?php /* Chama a View da Barra de navegação*/
-	$dados['ativo'] = 1; $this->load->view('navbar',$dados);?>
+	$dados['ativo'] = 1; $this->load->view('admin3/navbar',$dados);?>
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12">
 			<div class="panel panel-info">
@@ -57,6 +57,8 @@
                       <dd>'.$reserva['labnome'].'</dd>
                       <dt>Data da Aula:</dt>
                       <dd>'.utf8_encode(strftime('%A, %d de %B de %Y', strtotime($reserva['data_aula']))).'</dd>
+                      <dt>Titulo:</dt>
+                      <dd>'.$reserva['titulo_aula'].'</dd>
                       <dt>Descrição:</dt>
                       <dd>'.$reserva['descricao'].'</dd>
                     </dl> 
@@ -66,7 +68,7 @@
                         'title' => 'Excluir Reserva',
                         'class' => 'pull-left btn btn-danger'
                       );
-                      echo anchor('paineladm/apaga/'.$reserva['reservaid'], 'Excluir Reserva', $atts);
+                      echo anchor('admin3/paineladm/apaga/'.$reserva['reservaid'], 'Excluir Reserva', $atts);
                       echo '<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                     </div>
                   </div>

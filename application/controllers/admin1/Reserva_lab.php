@@ -18,12 +18,17 @@ class Reserva_lab extends CI_Controller {
     /* Esta condição verifica se algum
      * Usuario está logado
      * Caso não esteja logado é carregada a view de login
-     */           
+     * Caso o tipo não seja igual ao local da area admim
+     * o usuario e redirecionado
+     */
+    $local = 1;
+    $tipo = $_SESSION['tipo'];           
     if(!isset($_SESSION['logado'])){            
-        redirect(base_url());            
-    }        
+      redirect(base_url());            
+    }elseif($tipo != $local){            
+      redirect(base_url());            
+    }      
   }
-  
 
   public function index() {
     $this->load->model('reserva');
@@ -33,12 +38,11 @@ class Reserva_lab extends CI_Controller {
     $dados['unidade'] = $this->reserva->gettabela('tblunidade');
     $dados['periodo'] = $this->reserva->gettabela('tblperiodo');
     $dados['lab'] = $this->reserva->gettabela('tbllaboratorio');
-    $this->load->view('cadastro_reserva',$dados);      
+    $this->load->view('admin1/cadastro_reserva',$dados);      
   }
 
   public function receber(){
     //Regras da Validação
-    $this->load->library('form_validation');
     $this->form_validation->set_rules('unidade', 'UNIDADE', 'required');
     $this->form_validation->set_rules('curso', 'CURSO', 'required'); 
     $this->form_validation->set_rules('disciplina', 'DISCIPLINA', 'required'); 
@@ -46,17 +50,10 @@ class Reserva_lab extends CI_Controller {
     $this->form_validation->set_rules('dataaula', 'DATA', 'required');       
     $this->form_validation->set_rules('turno', 'TURNO', 'required');      
     $this->form_validation->set_rules('laboratorio', 'LABORATÓRIO', 'required');      
+    $this->form_validation->set_rules('titulo', 'TITULO DA AULA', 'required');      
     $this->form_validation->set_rules('descricao', 'DESCRICAO', 'required');
     
-    $this->form_validation->set_error_delimiters(
-      '<div class="alert alert-danger" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button><i class="fa fa-exclamation-triangle fa-fw fa-lg"></i> ', 
-      '</div>');     
-    
     if ($this->form_validation->run() == FALSE) {
-      //se não houver cpf ou senha retornara com msg de erro
       $this->index();            
     } else { 
         //Recebe os dados da views
@@ -68,6 +65,7 @@ class Reserva_lab extends CI_Controller {
         $data['turnoid'] = $this->input->post('turno');
         $data['periodoid'] = $this->input->post('periodo');
         $data['labid'] = $this->input->post('laboratorio');
+        $data['titulo_aula'] = $this->input->post('titulo');
         $data['descricao'] = $this->input->post('descricao');
        
         /* Carrega o modelo */
@@ -75,7 +73,7 @@ class Reserva_lab extends CI_Controller {
 
         /* Chama a função inserir do modelo */
         if ($this->reserva->cadastro($data)) {
-          $dados['local'] = 'Paineladm';
+          $dados['local'] = 'admin1/Paineladm';
           $dados['mensagem'] = 'Reserva feita com sucesso!';
           $this->load->view('mensagem_ok',$dados);
         } else {

@@ -1,16 +1,14 @@
 <?php $this->load->view('head');//Chama a view head.html?>
-
   <title>Reserva de Laboratórios</title>
-  
 </head>
 <body>
   <div class="container main">
   <?php /* Chama a View da Barra de navegação*/
-  $dados['ativo'] = 3; $this->load->view('navbar',$dados);?>
+  $dados['ativo'] = 3; $this->load->view('admin1/navbar',$dados);?>
   <div class="row">
   <div class="col-sm-12">    
     <?php 
-    echo form_open('Reserva_lab/receber','class="form-horizontal"'); 
+    echo form_open('admin1/Reserva_lab/receber','class="form-horizontal"'); 
     echo form_fieldset('Reserva de Laboratorio');
 
     //Definição para o Bootstrap
@@ -44,6 +42,7 @@
     echo form_label('UNIDADE','unidade',$attlabel);
     echo $taminput;
     echo form_dropdown('unidade',$options,'',$clss);
+    echo form_error('unidade');  
     echo $fimdiv;
 
     //Campo de Curso
@@ -55,6 +54,7 @@
     echo form_label('CURSO','curso',$attlabel);
     echo $taminput; 
     echo form_dropdown('curso',$options,'',$clss);
+    echo form_error('curso');  
     echo $fimdiv;
 
     //Campo das Disciplinas
@@ -66,6 +66,7 @@
     echo form_label('DISCIPLINA','disciplina',$attlabel);
     echo $taminput;
     echo form_dropdown('disciplina',$options,'',$clss);
+    echo form_error('disciplina');  
     echo $fimdiv;
 
     //Campo dos Periodos
@@ -77,6 +78,7 @@
     echo form_label('PERIODO','periodo',$attlabel);
     echo $taminput;
     echo form_dropdown('periodo',$options,'',$clss);
+    echo form_error('periodo');  
     echo $fimdiv;
 
     //Campo de Data
@@ -92,6 +94,7 @@
     echo form_label('DATA','dataaula',$attlabel);
     echo $taminput;    
     echo form_input($atr_dataaula);
+    echo form_error('dataaula');  
     echo $fimdiv;
 
     //Campo de Turno
@@ -103,6 +106,7 @@
     echo form_label('TURNO', 'turno',$attlabel);
     echo $taminput; 
     echo form_dropdown('turno', $options,'',$clss);
+    echo form_error('turno');  
     echo $fimdiv;
 
     //Campo dos Labs
@@ -114,6 +118,22 @@
     echo form_label('LABORATÓRIO','laboratorio',$attlabel);
     echo $taminput;
     echo form_dropdown('laboratorio',$options,'',$clss);
+    echo form_error('laboratorio');  
+    echo $fimdiv;
+
+    //Campo de titulo
+    echo $formgroup;    
+    $att = array(
+      "type" => "text",
+      "name" => "titulo",
+      "id" => "titulo",
+      "value" => set_value('titulo'),
+      "class" => "form-control"            
+    );
+    echo form_label('TITULO DA AULA','titulo',$attlabel);
+    echo $taminput;
+    echo form_input($att);
+    echo form_error('titulo');
     echo $fimdiv;
 
     //Campo Descrição
@@ -128,12 +148,13 @@
     echo form_label('DESCRIÇÃO','descricao',$attlabel);
     echo $taminput;
     echo form_textarea($atr_text);
+    echo form_error('descricao');  
     echo $fimdiv;
 
-    echo '<div class="form-group">';
+    /*echo '<div class="form-group">';
     echo '<div class="col-sm-offset-2 col-sm-6">';
     echo validation_errors();
-    echo $fimdiv;
+    echo $fimdiv;*/
 
     $atributosbtn = array(
         "type" => "submit",

@@ -6,11 +6,11 @@
 <body>
   <div class="container main">
   <?php /* Chama a View da Barra de navegação*/
-  $dados['ativo'] = 6; $this->load->view('navbar',$dados);?>
+  $dados['ativo'] = 6; $this->load->view('admin1/navbar',$dados);?>
   <div class="row">
   <div class="col-sm-12">    
     <?php 
-    echo form_open('Usuario/receber','class="form-horizontal"'); 
+    echo form_open('admin1/Usuario/receber','class="form-horizontal"'); 
     echo form_fieldset('Cadastro de Usuario');
 
     //Definição para o Bootstrap

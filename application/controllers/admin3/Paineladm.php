@@ -18,17 +18,24 @@ class Paineladm extends CI_Controller {
     /* Esta condição verifica se algum
      * Usuario está logado
      * Caso não esteja logado é carregada a view de login
-     */           
+     * Caso o tipo não seja igual ao local da area admim
+     * o usuario e redirecionado
+     */
+    $local = 3;
+    $tipo = $_SESSION['tipo'];           
     if(!isset($_SESSION['logado'])){            
-        redirect(base_url());            
-    }        
+      redirect(base_url());            
+    }elseif($tipo != $local){            
+      redirect(base_url());            
+    }      
   }
+
 
     public function index() {
         $id = $this->session->userdata('id');
         $this->load->model('reserva');        
         $dados['reservado'] = $this->reserva->list_reserva($id);
-        $this->load->view('paineladm',$dados); 
+        $this->load->view('admin3/paineladm',$dados); 
     }
 
     public function apaga($id){
@@ -37,7 +44,7 @@ class Paineladm extends CI_Controller {
 
         /* Chama a função inserir do modelo */
         if ($this->reserva->apaga($id)) {
-            redirect(base_url('paineladm'));
+            redirect(base_url('admin3/paineladm'));
         } else {
             echo "error";
         }

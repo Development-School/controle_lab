@@ -4,11 +4,11 @@
 <body>
   <div class="container main">
   <?php /* Chama a View da Barra de navegação*/
-  $dados['ativo'] = 2; $this->load->view('navbar',$dados);?>
+  $dados['ativo'] = 2; $this->load->view('admin2/navbar',$dados);?>
   <div class="row">
      <?php foreach ($unidade as $unidade) {
      echo '
-     <div class="col-sm-6"> 
+     <div class="col-sm-12"> 
       <div class="panel panel-default">
         <div class="panel-heading"><h4>'.$unidade['unidadedesc'].'</h4></div>
         <div class="panel-body">';
@@ -16,7 +16,7 @@
           //print_r( $labs[$unidade['unidadeid']] );
           //echo '</pre>';
           foreach($labs[$unidade['unidadeid']] as $laboratorio){       
-            echo '<dl class="dl-horizontal card ripple" data-ripple-color="#8ED8FF">';
+            echo '<div class="col-sm-6 col-md-4"><dl class="dl-horizontal card ripple" data-ripple-color="#8ED8FF">';
             foreach($laboratorio as $key => $dados){
               switch ($key) {
                 case 'labnome':
@@ -36,7 +36,7 @@
                     echo '<dd>Não informada!</dd>';}                  
                   break;
               }              
-            } echo '</dl>';            
+            } echo '</dl></div>';            
           }
         echo '</div></div></div>';
      }?>

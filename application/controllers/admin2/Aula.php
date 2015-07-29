@@ -17,16 +17,22 @@ class Aula extends CI_Controller {  /**
     /* Esta condição verifica se algum
      * Usuario está logado
      * Caso não esteja logado é carregada a view de login
-     */           
+     * Caso o tipo não seja igual ao local da area admim
+     * o usuario e redirecionado
+     */
+    $local = 2;
+    $tipo = $_SESSION['tipo'];           
     if(!isset($_SESSION['logado'])){            
-        redirect(base_url());            
-    }        
+      redirect(base_url());            
+    }elseif($tipo != $local){            
+      redirect(base_url());            
+    }      
   }
   
   public function index($ano= '',$mes = ''){
     $dados['reservado'] = '';
     $dados['calendario'] = $this->calendario($ano,$mes);
-    $this->load->view('aula_view',$dados);
+    $this->load->view('admin2/aula_view',$dados);
   }
 
   public function calendario($ano,$mes){    
@@ -36,7 +42,7 @@ class Aula extends CI_Controller {  /**
     }
     
     $prefs['show_next_prev'] = TRUE;
-    $prefs['next_prev_url'] = base_url('aula/index');
+    $prefs['next_prev_url'] = base_url('admin2/aula/index');
     $prefs['day_type'] = 'long';
     $prefs['template'] = '
       {table_open}<table class="table table-striped">{/table_open}
@@ -73,9 +79,9 @@ class Aula extends CI_Controller {  /**
     $data = array();
     for ($i= 1; $i <= $this->calendar->get_total_days($mes,$ano); $i++) {
       if ($i < 10) {
-        $data += array($i => base_url('aula/reservas_dia').'/'.$ano.$mes.'0'.$i,);
+        $data += array($i => base_url('admin2/aula/reservas_dia').'/'.$ano.$mes.'0'.$i,);
       } 
-      else $data += array($i => base_url('aula/reservas_dia').'/'.$ano.$mes.$i,); 
+      else $data += array($i => base_url('admin2/aula/reservas_dia').'/'.$ano.$mes.$i,); 
     }
 
     return $this->calendar->generate($ano,$mes,$data);
@@ -87,6 +93,6 @@ class Aula extends CI_Controller {  /**
     $this->load->model('reserva');
     $dados['reservado'] = $this->reserva->reserva_dia($dia);
     $dados['calendario'] = $this->calendario($ano,$mes);
-    $this->load->view('aula_view',$dados);    
+    $this->load->view('admin2/aula_view',$dados);    
   }
 }

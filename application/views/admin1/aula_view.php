@@ -9,7 +9,7 @@
 <body>
   <div class="container main">
   <?php /* Chama a View da Barra de navegação*/
-  $dados['ativo'] = 4; $this->load->view('navbar',$dados);?>
+  $dados['ativo'] = 4; $this->load->view('admin1/navbar',$dados);?>
   <div class="row">  
     <div class="col-md-6">
     <div class="panel panel-default">

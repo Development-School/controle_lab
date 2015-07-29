@@ -12,10 +12,20 @@
 <body>
 <div class="container main">
 <?php /* Chama a View da Barra de navegação*/
-$dados['ativo'] = 0; $this->load->view('navbar',$dados);?>
+  switch ($_SESSION['tipo']) {
+    case 1:
+      $dados['ativo'] = 0; $this->load->view('admin1/navbar',$dados);
+      break;
+    case 2:
+      $dados['ativo'] = 0; $this->load->view('admin2/navbar',$dados);
+      break;
+    case 3:
+      $dados['ativo'] = 0; $this->load->view('admin3/navbar',$dados);
+      break;          
+  }?>
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12">
-			<h1 class="text-center"><i class="fa fa-check fa-lg pull-left"><?php echo $mensagem; ?></i></h1>			
+			<h1><i class="fa fa-check fa-lg pull-left"></i><span class="label label-success">&nbsp;&nbsp;<?php echo $mensagem; ?></span></h1>			
 		</div>
 	</div>
 </div>

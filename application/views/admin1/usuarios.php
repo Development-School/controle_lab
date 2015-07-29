@@ -9,7 +9,7 @@
 <body>
   <div class="container main">
   <?php /* Chama a View da Barra de navegação*/
-  $dados['ativo'] = 5; $this->load->view('navbar',$dados);?>
+  $dados['ativo'] = 5; $this->load->view('admin1/navbar',$dados);?>
   <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12">
      <div class="panel panel-default">
@@ -61,7 +61,7 @@
                       <h4 class="modal-title" id="myModalLabel">Atualizar Cadastro<br><small>Usuario: '.$user['nome'].'</small></h4>
                     </div>
                     <div class="modal-body">';
-    echo form_open('Usuario/receber','class="form-horizontal"'); 
+    echo form_open('admin1/Usuario/receber','class="form-horizontal"'); 
     echo form_fieldset('Cadastro de Usuario'); 
 
     echo form_hidden('id', $user['usuarioid']);
@@ -208,7 +208,7 @@
                   'title' => 'Excluir',
                   'class' => 'pull-left btn btn-danger'
                 );
-        echo '<td>'.anchor('Usuario/apaga/'.$user['usuarioid'], '<i class="fa fa-trash-o fa-fw fa-lg"></i>&nbsp;Excluir', $atts).'</td>';             
+        echo '<td>'.anchor('admin1/Usuario/apaga/'.$user['usuarioid'], '<i class="fa fa-trash-o fa-fw fa-lg"></i>&nbsp;Excluir', $atts).'</td>';             
       }
     echo "</table>";
     }else{
