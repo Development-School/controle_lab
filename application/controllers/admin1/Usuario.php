@@ -65,8 +65,7 @@ class Usuario extends CI_Controller {
       }           
       $this->load->view('admin1/cadastro_usuario',$dados);      
     } 
-    else {
-      $cpf = $this->input->post('cpf'); 
+    else {      
       //Se existir um id faça a atualização de cadastro
       if (isset($_POST['id'])) {
         $id = $this->input->post('id');

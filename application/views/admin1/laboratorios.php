@@ -12,33 +12,47 @@
       <div class="panel panel-default">
         <div class="panel-heading"><h4>'.$unidade['unidadedesc'].'</h4></div>
         <div class="panel-body">';
-          //echo '<pre>';
-          //print_r( $labs[$unidade['unidadeid']] );
-          //echo '</pre>';
-          foreach($labs[$unidade['unidadeid']] as $laboratorio){       
-            echo '<div class="col-sm-6 col-md-4"><dl class="dl-horizontal card ripple" data-ripple-color="#8ED8FF">';
+          echo '<div class="table-responsive">
+          <table class="table table-hover">
+            <tr class="active">
+              <th>NOME</th>
+              <th>TIPO</th>              
+              <th>CAPACIDADE</th>
+              <th></th>
+              <th></th>              
+            </tr>';
+          foreach($labs[$unidade['unidadeid']] as $laboratorio){
+            echo "<tr>";       
             foreach($laboratorio as $key => $dados){
               switch ($key) {
-                case 'labnome':
-                  echo '<dt>Nome:</dt>';
-                  echo '<dd>'.$dados."</dd>";
+                case 'labnome':                  
+                  echo '<td>'.$dados."</td>";
                   break;              
-                case 'descricao':
-                  echo '<dt>Tipo:</dt>';
-                  echo '<dd>'.$dados."</dd>";
-                  break;              
+                case 'descricao':           
+                  echo '<td>'.$dados."</td>";
+                  break; 
                 case 'capacidade':
-                  if (isset($dados)) {                    
-                    echo '<dt>Capacidade:</dt>';
-                    echo '<dd>'.$dados."</dd>";
+                  if (isset($dados)) {  
+                    echo '<td>'.$dados."</td>";
                   }else{
-                    echo '<dt>Capacidade:</dt>';
-                    echo '<dd>Não informada!</dd>';}                  
+                    echo '<td>Não informada!</td>';}                  
                   break;
-              }              
-            } echo '</dl></div>';            
+                case 'labid':           
+                  $atts = array(
+                  'title' => 'Editar',
+                  'class' => 'pull-left btn btn-primary'
+                  );
+                  echo '<td>'.anchor('admin1/Labs/Editar/'.$dados, '<i class="fa fa-cog fa-fw fa-lg"></i>&nbsp;Editar', $atts).'</td>';
+                  $atts = array(
+                  'title' => 'Excluir',
+                  'class' => 'pull-left btn btn-danger'
+                  );
+                  echo '<td>'.anchor('admin1/Labs/apaga/'.$dados, '<i class="fa fa-trash-o fa-fw fa-lg"></i>&nbsp;Excluir', $atts).'</td>';
+                  break;              
+              }                                          
+            } echo '</tr>';            
           }
-        echo '</div></div></div>';
+        echo '</table></div></div></div></div>';
      }?>
   </div>
 </div>

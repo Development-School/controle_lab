@@ -1,7 +1,5 @@
 <?php $this->load->view('head');//Chama a view head.html?>
-<?php if(!isset($tipouser)){$tipouser = '';}?>
-  <title>Cadastro de Laboratorios</title>
-  
+  <title><?php echo $titulo; ?></title>  
 </head>
 <body>
   <div class="container main">
@@ -11,7 +9,7 @@
   <div class="col-sm-12">    
     <?php 
     echo form_open('admin1/Labs/receber','class="form-horizontal"'); 
-    echo form_fieldset('Cadastro de Usuario');
+    echo form_fieldset($titulo);
 
     //Definição para o Bootstrap
     $attlabel = array('class' => 'col-sm-2 control-label',);
@@ -24,23 +22,34 @@
       echo $id_oculto;
     }
 
+    //var_dump($laboratorio);
+
     //Campo de Lab nome
     echo $formgroup;    
     $att = array(
       "type" => "text",
       "name" => "nome",
-      "id" => "nome",
-      "value" => set_value('nome'),
+      "id" => "nome",      
       "class" => "form-control",
       "placeholder" => "Digite o nome do Laboratorio",
       "required" => ""             
     );
+    if(isset($laboratorio)){
+      $att += array("value" => $laboratorio[0]['labnome'], );   
+    }else {
+      $att += array("value" => set_value('nome'), );
+    }
     echo form_label('NOME','nome',$attlabel);
     echo $taminput;
     echo form_input($att);
     echo $fimdiv;
 
     //Campo de Unidade
+    if(isset($laboratorio)){
+      $tipound = $laboratorio[0]['unidadeid'];   
+    }else {
+      $tipound = '';
+    }
     echo $formgroup;
     $options = array('' => '',); 
     foreach($unidade as $unidade) {
@@ -48,10 +57,15 @@
     }
     echo form_label('UNIDADE','unidade',$attlabel);
     echo $taminput;
-    echo form_dropdown('unidade',$options, $tipouser ,$clss);
+    echo form_dropdown('unidade',$options, $tipound ,$clss);
     echo $fimdiv;
 
     //Campo de tipo
+    if(isset($laboratorio)){
+      $tipolab = $laboratorio[0]['tipolabid'];   
+    }else {
+      $tipolab = '';
+    }
     echo $formgroup;
     $options = array('' => '',); 
     foreach($tipo as $tipo) {
@@ -59,7 +73,7 @@
     }
     echo form_label('TIPO DE LABORATORIO','tipo',$attlabel);
     echo $taminput;
-    echo form_dropdown('tipo',$options, $tipouser ,$clss);
+    echo form_dropdown('tipo',$options, $tipolab ,$clss);
     echo $fimdiv;
     
     //Campo de Capacidade
@@ -68,11 +82,15 @@
       "type" => "number",
       "name" => "capacidade",
       "id" => "capacidade",
-      "value" => set_value('capacidade'),
       "class" => "form-control",
       "placeholder" => "Digite o capacidade do Laboratorio",
       "required" => ""             
     );
+    if(isset($laboratorio)){
+      $att += array("value" => $laboratorio[0]['capacidade'], );   
+    }else {
+      $att += array("value" => set_value('capacidade'), );
+    }
     echo form_label('CAPACIDADE','capacidade',$attlabel);
     echo $taminput;
     echo form_input($att);
@@ -93,7 +111,7 @@
     $atributosbtn = array(
         "type" => "submit",
         "name" => "btnSubmit",
-        "value" => "Cadastrar",
+        "value" => $titulobtn,
         "class" => "btn btn-info btn-lg col-xs-6 col-xs-offset-3 col-md-2 col-md-offset-2"
       );
     echo form_input($atributosbtn);;

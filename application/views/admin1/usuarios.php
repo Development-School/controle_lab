@@ -29,8 +29,7 @@
         <th>EMAIL</th>
         <th>CONTATO</th>
         <th></th>
-        <th></th>
-              
+        <th></th>              
       </tr>';
       //Definição para o Bootstrap
       $attlabel = array('class' => 'col-sm-2 control-label',);

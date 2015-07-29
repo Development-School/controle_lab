@@ -14,18 +14,36 @@ class Lab_model extends CI_Model {
    return $rows; // retorna rows, e nao a variavel row
   }
 
-	public function labs_unid($unidade){  
+  public function labs_unid($unidade){  
     $this->db->select('
-      tbllaboratorio.labid,  
       tbllaboratorio.labnome,  
       tbltipolab.descricao,  
       tbllaboratorio.capacidade,  
-      tblunidade.unidadedesc  
+      tblunidade.unidadedesc,  
+      tbllaboratorio.labid  
       ');
     $this->db->from('tbllaboratorio');          
     $this->db->join('tbltipolab','tbllaboratorio.tipolabid = tbltipolab.tipolabid','inner');    
     $this->db->join('tblunidade','tbllaboratorio.unidadeid = tblunidade.unidadeid','inner');    
     $this->db->where('tbllaboratorio.unidadeid =', $unidade);
+    $retono = $this->db->get();
+    return $this->arruma($retono);  
+  }
+
+	public function labs_id($id){  
+    $this->db->select('
+      tbllaboratorio.labnome,  
+      tbltipolab.descricao,  
+      tbllaboratorio.tipolabid,  
+      tbllaboratorio.capacidade,  
+      tblunidade.unidadedesc,  
+      tblunidade.unidadeid,  
+      tbllaboratorio.labid  
+      ');
+    $this->db->from('tbllaboratorio');          
+    $this->db->join('tbltipolab','tbllaboratorio.tipolabid = tbltipolab.tipolabid','inner');    
+    $this->db->join('tblunidade','tbllaboratorio.unidadeid = tblunidade.unidadeid','inner');    
+    $this->db->where('tbllaboratorio.labid =', $id);
     $retono = $this->db->get();
     return $this->arruma($retono);  
   }
@@ -42,5 +60,19 @@ class Lab_model extends CI_Model {
   # CADASTRO DE labs
   function cadastro($dados){      
     return $this->db->insert('tbllaboratorio', $dados);
+  }
+  
+  /**
+   * @todo apaga reserva
+   * Esta Função apaga os dados de uma tabela
+   */
+  function apaga($id){    
+    $this->db->where('labid', $id);
+    return $this->db->delete('tbllaboratorio');     
+  }
+
+  function atualiza($id, $data){    
+    $this->db->where('labid', $id);
+    return $this->db->update('tbllaboratorio', $data);     
   }
 }
