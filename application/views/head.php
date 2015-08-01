@@ -33,6 +33,10 @@
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/font-awesome.min.css') ?>" >	
  	<script src="<?php echo base_url('assets/js/jquery.min.js') ?>"></script>
 	<script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
+	<!-- Bootstrap Dual Listbox -->
+	<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-duallistbox.min.css') ?>" >
+	<script src="<?php echo base_url('assets/js/jquery.bootstrap-duallistbox.min.js') ?>"></script>
+	<!-- Estilo CSS -->
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/estilo.css') ?>" >
 	   	
 	<!-- HTML5 só funciona com Respond.js no IE8 -->
