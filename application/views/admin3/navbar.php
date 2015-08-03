@@ -17,25 +17,17 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li <?php if($ativo == 1){echo 'class="active"';}?>><a href="<?php echo base_url('admin3/paineladm');?>"><i class="fa fa-home fa-fw fa-lg hidden-sm"></i>&nbsp;Início</a></li>
-				<!--li <?php if($ativo == 2){echo 'class="active"';}?>><a href="<?php echo base_url('Labs');?>"><i class="fa fa-flask fa-fw fa-lg hidden-sm"></i>&nbsp;Laboratorios</a></li>
-				<li <?php if($ativo == 2 or $ativo == 8){echo 'class="dropdown active"';} else{echo 'class="dropdown"';}?>>
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-flask fa-fw fa-lg hidden-sm"></i>&nbsp;Laboratorios</a>
+				<li <?php if($ativo == 2){echo 'class="active"';}?>><a href="<?php echo base_url('admin3/Labs');?>"><i class="fa fa-flask fa-fw fa-lg hidden-sm"></i>&nbsp;Laboratorios</a></li>
+				<li <?php if($ativo == 3 or $ativo == 4){echo 'class="dropdown active"';} else{echo 'class="dropdown"';}?>>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-cube fa-fw fa-lg hidden-sm"></i>&nbsp;Mateirais&nbsp;<i class="fa fa-caret-down"></i></a>
 					<ul class="dropdown-menu" role="menu">
-						<li <?php if($ativo == 2){echo 'class="active"';}?>><a href="<?php echo base_url('Labs');?>"><i class="fa fa-list fa-fw fa-lg"></i>&nbsp;Listar</a></li>
-						<li <?php if($ativo == 8){echo 'class="active"';}?>><a href="<?php echo base_url('Labs/cadastrar');?>"><i class="fa fa-user-plus fa-fw fa-lg"></i>&nbsp;Cadastrar</a></li>
+						<li <?php if($ativo == 3){echo 'class="active"';}?>><a href="<?php echo base_url('admin3/Material');?>"><i class="fa fa-list fa-fw fa-lg"></i>&nbsp;Listar</a></li>
+						<li <?php if($ativo == 4){echo 'class="active"';}?>><a href="<?php echo base_url('admin3/Material/cadastrar');?>"><i class="fa fa-edit fa-fw fa-lg"></i>&nbsp;Cadastrar</a></li>
 					</ul>
 				</li>
-				<li <?php if($ativo == 3){echo 'class="active"';}?>><a href="<?php echo base_url('Reserva_lab');?>"><i class="fa fa-check-square fa-fw fa-lg hidden-sm"></i>&nbsp;Reservas</a></li>
-				<li <?php if($ativo == 4){echo 'class="active"';}?>><a href="<?php echo base_url('aula');?>"><i class="fa fa-calendar fa-fw fa-lg hidden-sm"></i>&nbsp;Calendario</a></li>
-				<li <?php if($ativo == 5 or $ativo == 6){echo 'class="dropdown active"';} else{echo 'class="dropdown"';}?>>
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user fa-fw fa-lg hidden-sm"></i>&nbsp;Usuarios</a>
-					<ul class="dropdown-menu" role="menu">
-						<li <?php if($ativo == 5){echo 'class="active"';}?>><a href="<?php echo base_url('Usuario');?>"><i class="fa fa-list fa-fw fa-lg"></i>&nbsp;Listar</a></li>
-						<li <?php if($ativo == 6){echo 'class="active"';}?>><a href="<?php echo base_url('Usuario/cadastrar');?>"><i class="fa fa-user-plus fa-fw fa-lg"></i>&nbsp;Cadastrar</a></li>
-					</ul>
-				</li-->
+				
 				<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mais&nbsp;<i class="fa fa-plus-circle fa-fw fa-lg hidden-sm"></i></a>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-plus-circle fa-fw fa-lg hidden-sm"></i>&nbsp;Mais&nbsp;<i class="fa fa-caret-down"></i></a>
 					<ul class="dropdown-menu" role="menu">
 						<li <?php if($ativo == 7){echo 'class="active"';}?>><a href="<?php echo base_url('ajuda');?>"><i class="fa fa-question fa-fw fa-lg"></i>&nbsp;Ajuda</a></li>
 						<li class="divider"></li>

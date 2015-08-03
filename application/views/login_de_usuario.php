@@ -5,7 +5,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
-        <img class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2" src="<?php echo base_url('assets/imgs/logo.svg') ?>" height="200" alt="Sistema Gerenciador de Laboratórios">
+        <img class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2" src="<?php echo base_url('assets/imgs/logo.svg') ?>" height="100" alt="Sistema Gerenciador de Laboratórios">
       	<h1 class="text-center">Sistema Gerenciador de Laboratórios</h1>
       	<div class="form-group">        			
       		<?php		
@@ -79,7 +79,7 @@
           ?>
         </div>
       </div>
-      <div class="final col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
         <a class="btn col-sm-4" href="<?php echo base_url('');?>">Cadastre-se Aqui! </a>      
         <a class="btn col-sm-4" href="<?php echo base_url('');?>">Esqueceu sua senha?</a>
         <a class="btn col-sm-4" href="<?php echo base_url('Home/ajuda');?>">Ajuda</a>

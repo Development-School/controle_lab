@@ -61,6 +61,15 @@ class Lab_model extends CI_Model {
   function cadastro($dados){      
     return $this->db->insert('tbllaboratorio', $dados);
   }
+
+  # CADASTRO DE labs
+  function cadastro_material($dados){      
+    return $this->db->insert('tblmaterial', $dados);
+  }
+  function get_material($id){
+    $retono = $this->db->get_where('tblmaterial', array('materialid' => $id));
+    return $this->arruma($retono);
+  }
   
   /**
    * @todo apaga reserva
@@ -71,8 +80,19 @@ class Lab_model extends CI_Model {
     return $this->db->delete('tbllaboratorio');     
   }
 
+  function apaga_material($id){    
+    $this->db->where('materialid', $id);
+    return $this->db->delete('tblmaterial');     
+  }
+
   function atualiza($id, $data){    
     $this->db->where('labid', $id);
-    return $this->db->update('tbllaboratorio', $data);     
+    return $this->db->update('tbllaboratorio', $data);
   }
+
+  function atualiza_material($id, $data){    
+    $this->db->where('materialid', $id);
+    return $this->db->update('tblmaterial', $data);
+  }
+
 }
