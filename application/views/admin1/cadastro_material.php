@@ -4,15 +4,15 @@
 <body>
   <div class="container main">
   <?php /* Chama a View da Barra de navegação*/
-  $dados['ativo'] = 10; $this->load->view('admin1/navbar',$dados);?>
+  $dados['ativo'] = 12; $this->load->view('admin1/navbar',$dados);?>
   <div class="row">
   <div class="col-sm-12">    
     <?php 
-    echo form_open('admin1/Cursos/receber','class="form-horizontal"'); 
+    echo form_open('admin1/Material/receber','class="form-horizontal"'); 
     echo form_fieldset($titulo);
 
     //Definição para o Bootstrap
-    $attlabel = array('class' => 'col-sm-2 control-label');
+    $attlabel = array('class' => 'col-sm-2 control-label',);
     $formgroup = '<div class="form-group">';
     $taminput = '<div class="col-sm-10">';
     $clss = 'class="form-control"';
@@ -22,18 +22,20 @@
       echo $id_oculto;
     }
 
-    //Campo de nome do curso
+    //var_dump($laboratorio);
+
+    //Campo de nome do material
     echo $formgroup;    
     $att = array(
       "type" => "text",
       "name" => "nome",
       "id" => "nome",      
       "class" => "form-control",
-      "placeholder" => "Digite o nome do Curso",
+      "placeholder" => "Digite o nome do Material",
       "required" => ""             
     );
-    if(isset($curso)){
-      $att += array("value" => $curso[0]['cursodesc'], );   
+    if(isset($material)){
+      $att += array("value" => $material[0]['materialnome'], );   
     }else {
       $att += array("value" => set_value('nome'), );
     }
@@ -42,36 +44,24 @@
     echo form_input($att);
     echo $fimdiv;
 
-    //Campo de periodo
-    if(isset($curso)){
-      $tipolab = $curso[0]['periodoid'];   
+    //Campo de Quantidade
+    echo $formgroup;    
+    $att = array(
+      "type" => "number",
+      "name" => "quantidade",
+      "id" => "quantidade",
+      "class" => "form-control",
+      "placeholder" => "Digite o quantidade do Laboratorio",
+      "required" => ""             
+    );
+    if(isset($material)){
+      $att += array("value" => $material[0]['quantidade'], );   
     }else {
-      $tipolab = '';
+      $att += array("value" => set_value('quantidade'), );
     }
-    echo $formgroup;
-    $options = array('' => 'Digite a quantidade de periodos',); 
-    foreach($periodo as $periodo) {
-      $options += array($periodo['periodoid'] => $periodo['periododesc'],);    
-    }
-    echo form_label('PERIODOS DO CURSO','periodo',$attlabel);
+    echo form_label('QUANTIDADE','quantidade',$attlabel);
     echo $taminput;
-    echo form_dropdown('periodo',$options, $tipolab ,$clss);
-    echo $fimdiv;    
-
-    //Campo de disciplina
-    if(isset($disciplina)){
-      $tipound = $disciplina;   
-    }else {
-      $tipound = '';
-    }
-    echo $formgroup;
-    $options = array(); 
-    foreach($disci as $disci) {
-      $options += array($disci['disciplinaid'] => $disci['disciplinadesc'],);    
-    }
-    echo form_label('DISCIPLINA','disciplina',$attlabel);
-    echo $taminput;
-    echo form_dropdown('disciplina[]',$options, $tipound, $clss.'multiple="multiple"');
+    echo form_input($att);
     echo $fimdiv;
 
     echo '<div class="form-group">';
@@ -100,17 +90,4 @@
   </div>
   </div>
 </div>
-<script type="text/javascript">
-  var demo = $('select[name="disciplina[]"]').bootstrapDualListbox({
-  nonSelectedListLabel: 'Não Selecionados',
-  selectedListLabel: 'Selecionados',
-  preserveSelectionOnMove: 'moved',
-  infoText: 'Mostrando todos {0}',
-  infoTextEmpty: 'Lista Vazia',
-  filterPlaceHolder: 'Filtro',
-  filterTextClear: 'Mostrar tudo',
-  infoTextFiltered: '<span class="label label-warning">Filtrado</span>  {0} de {1}',
-  moveOnSelect: false 
-});
-</script>
 <?php $this->load->view('footer');//Chama a view footer?>

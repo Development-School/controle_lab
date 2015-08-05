@@ -17,11 +17,16 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li <?php if($ativo == 1){echo 'class="active"';}?>><a href="<?php echo base_url('admin1/paineladm');?>"><i class="fa fa-home fa-fw fa-lg hidden-sm"></i>&nbsp;Início</a></li>
-				<li <?php if($ativo == 2 or $ativo == 8){echo 'class="dropdown active"';} else{echo 'class="dropdown"';}?>>
+				<li <?php if($ativo == 2 or $ativo == 8 or $ativo == 11 or $ativo == 12){echo 'class="dropdown active"';} else{echo 'class="dropdown"';}?>>
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-flask fa-fw fa-lg hidden-sm"></i>&nbsp;Laboratorios&nbsp;<i class="fa fa-caret-down"></i></a>
 					<ul class="dropdown-menu" role="menu">
+						<li class="dropdown-header">Laboratorios</i></li>
 						<li <?php if($ativo == 2){echo 'class="active"';}?>><a href="<?php echo base_url('admin1/Labs');?>"><i class="fa fa-list fa-fw fa-lg"></i>&nbsp;Listar</a></li>
 						<li <?php if($ativo == 8){echo 'class="active"';}?>><a href="<?php echo base_url('admin1/Labs/cadastrar');?>"><i class="fa fa-plus fa-fw fa-lg"></i>&nbsp;Cadastrar</a></li>
+						<li class="divider"></li>
+						<li class="dropdown-header">Materiais</i></li>
+						<li <?php if($ativo == 11){echo 'class="active"';}?>><a href="<?php echo base_url('admin1/Material');?>"><i class="fa fa-list fa-fw fa-lg"></i>&nbsp;Listar</a></li>
+						<li <?php if($ativo == 12){echo 'class="active"';}?>><a href="<?php echo base_url('admin1/Material/cadastrar');?>"><i class="fa fa-plus fa-fw fa-lg"></i>&nbsp;Cadastrar</a></li>
 					</ul>
 				</li>
 				<li <?php if($ativo == 3 or $ativo == 4){echo 'class="dropdown active"';} else{echo 'class="dropdown"';}?>>

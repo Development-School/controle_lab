@@ -20,7 +20,8 @@ class Curso_model extends CI_Model {
     $this->db->select('
       tblcurso.cursoid, 
 			tblcurso.cursodesc, 
-			tblperiodo.periododesc              
+      tblperiodo.periododesc,              
+			tblperiodo.periodoid              
       ');
     $this->db->from('tblcurso');          
     $this->db->join('tblfiltroperiodo','tblcurso.cursoid = tblfiltroperiodo.cursoid','inner');
@@ -34,6 +35,7 @@ class Curso_model extends CI_Model {
 
   public function grade($cursoid){  
     $this->db->select('
+      tbldisciplina.disciplinaid,              
       tbldisciplina.disciplinadesc              
       ');
     $this->db->from('tblcurso');          
@@ -55,22 +57,51 @@ class Curso_model extends CI_Model {
 
   public function cadastro($dadoscurso, $dadosperiodo, $dadosdisc)
   {
-  	$this->db->insert('tblcurso', $dadoscurso);
-  	//A função insert_id() retorna o ultimo id inserido no bd
-  	$curso_id = $this->db->insert_id();
-  	$dadosperiodo['cursoid'] = $curso_id;
-  	$this->db->insert('tblfiltroperiodo', $dadosperiodo);
-  	/*echo "<pre>";
+    $this->db->insert('tblcurso', $dadoscurso);
+    //A função insert_id() retorna o ultimo id inserido no bd
+    $curso_id = $this->db->insert_id();
+    $dadosperiodo['cursoid'] = $curso_id;
+    $this->db->insert('tblfiltroperiodo', $dadosperiodo);
+    /*echo "<pre>";
     var_dump($dadosdisc);
     echo "</pre>";*/
-  	foreach ($dadosdisc as $dados) {
-  		$grade['cursoid'] = $curso_id;
-  		$grade['disciplinaid'] = $dados;
-  		$this->db->insert('tblgrade', $grade);
-	  	/*echo "<pre>";
-	    var_dump($grade);
-	    echo "</pre>";*/
-  	}
+    foreach ($dadosdisc as $dados) {
+      $grade['cursoid'] = $curso_id;
+      $grade['disciplinaid'] = $dados;
+      $this->db->insert('tblgrade', $grade);
+      /*echo "<pre>";
+      var_dump($grade);
+      echo "</pre>";*/
+    }
+    return $erro = $this->db->error();     
+  }
+
+  public function atualizar($id, $dadoscurso, $dadosperiodo, $dadosdisc)
+  {
+    $this->db->where('cursoid', $id);
+    $this->db->update('tblcurso', $dadoscurso);
+
+    $this->db->where('cursoid', $id);
+    $this->db->update('tblfiltroperiodo', $dadosperiodo);
+    
+    $this->db->where('cursoid', $id);
+    $this->db->delete('tblgrade');
+    foreach ($dadosdisc as $dados) {
+      $grade['cursoid'] = $id;
+      $grade['disciplinaid'] = $dados;
+      $this->db->insert('tblgrade', $grade);
+    }
+    return $erro = $this->db->error();     
+  }
+
+  public function excluir($id)
+  {   
+    $this->db->where('cursoid', $id);
+    $this->db->delete('tblgrade');
+    $this->db->where('cursoid', $id);
+    $this->db->delete('tblfiltroperiodo');
+    $this->db->where('cursoid', $id);
+    $this->db->delete('tblcurso');
   	return $erro = $this->db->error();   	 
   }
 }

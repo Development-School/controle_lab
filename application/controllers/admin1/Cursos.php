@@ -52,23 +52,78 @@ class Cursos extends CI_Controller {
     $this->form_validation->set_rules('disciplina[]', 'DISCIPLINA', 'required'); 
 
     if ($this->form_validation->run() == FALSE) {
-			$this->cadastrar();     
+			if (isset($_POST['id'])) {
+				$this->editar($_POST['id']);
+			}
+			else{$this->cadastrar();}			     
     } 
     else {
-			$tblcurso['cursodesc'] = $this->input->post('nome');
-	    $tblfiltroperiodo['periodoid'] = $this->input->post('periodo');
-	    //array_unique — Remove o valores duplicados de um array
-	    $tblgrade = array_unique($this->input->post('disciplina[]'));
-	    $this->load->model('Curso_model');    
-	    /* Chama a função inserir do modelo */
-	    if ($this->Curso_model->cadastro($tblcurso, $tblfiltroperiodo, $tblgrade)) {
-	      $dados['local'] = 'admin1/Cursos';
-	      $dados['mensagem'] = 'Curso Cadastrado com sucesso!';
-	      $this->load->view('mensagem_ok',$dados);
-	    } else {
-	      echo "error";
-	    }
+    	if (isset($_POST['id'])) {
+    		$idcurso = $this->input->post('id');
+    		$tblcurso['cursodesc'] = $this->input->post('nome');
+		    $tblfiltroperiodo['periodoid'] = $this->input->post('periodo');
+		    //array_unique — Remove o valores duplicados de um array
+		    $tblgrade = array_unique($this->input->post('disciplina[]'));
+		    $this->load->model('Curso_model');
+		     if ($this->Curso_model->atualizar($idcurso, $tblcurso, $tblfiltroperiodo, $tblgrade)) {
+		      $dados['local'] = 'admin1/Cursos';
+		      $dados['mensagem'] = 'Curso Atualizado com sucesso!';
+		      $this->load->view('mensagem_ok',$dados);
+		    } else {
+		      echo "error";
+		    }
+    	}
+    	else{
+				$tblcurso['cursodesc'] = $this->input->post('nome');
+		    $tblfiltroperiodo['periodoid'] = $this->input->post('periodo');
+		    //array_unique — Remove o valores duplicados de um array
+		    $tblgrade = array_unique($this->input->post('disciplina[]'));
+		    $this->load->model('Curso_model');    
+		    /* Chama a função inserir do modelo */
+		    if ($this->Curso_model->cadastro($tblcurso, $tblfiltroperiodo, $tblgrade)) {
+		      $dados['local'] = 'admin1/Cursos';
+		      $dados['mensagem'] = 'Curso Cadastrado com sucesso!';
+		      $this->load->view('mensagem_ok',$dados);
+		    } else {
+		      echo "error";
+		    }
+	  	}
   	}
+	}
+
+	public function excluir($id)
+	{
+    $this->load->model('Curso_model');
+    if ($this->Curso_model->excluir($id)) {
+      redirect(base_url('admin1/Cursos'));
+    } else {
+      echo "error";
+    }
+	}
+
+	public function editar($id)
+	{
+    $this->load->model('Curso_model');
+    $dados['disci'] = $this->Curso_model->gettabela('tbldisciplina');
+    $dados['periodo'] = $this->Curso_model->gettabela('tblperiodo');
+    if ($id) {
+      $dados['id_oculto'] = form_hidden('id', $id);
+      $dados['curso'] = $this->Curso_model->list_cursos($id);
+      $disciplinas =  $this->Curso_model->grade($id);
+      $dados['disciplina'] = array();
+      foreach ($disciplinas as $discip) {
+      	$dados['disciplina'][] = $discip['disciplinaid'];      	
+      }/*
+      echo "<pre>";
+	    var_dump($disciplinas);
+	    echo "</pre>";
+	    echo "<pre>";
+	    var_dump($dados['disciplina']);
+	    echo "</pre>";*/
+    }
+    $dados['titulo'] = 'Editar Curso';    
+    $dados['titulobtn'] = 'Editar';        
+    $this->load->view('admin1/cadastro_curso',$dados);
 	}
 }
 
