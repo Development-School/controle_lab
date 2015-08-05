@@ -113,14 +113,21 @@ class Usuario extends CI_Controller {
   }
 
   public function apaga($id){
-        /* Carrega o modelo */
-        $this->load->model('Usuarios');            
-
-        /* Chama a função inserir do modelo */
-        if ($this->Usuarios->apaga($id)) {
-            redirect(base_url('admin1/Usuario'));
-        } else {
-            echo "error";
-        }
+    if ($id == $_SESSION['id']) {
+      $dados['local'] = 'admin1/Usuario';
+      $dados['mensagem'] = 'Erro! vc nao pode se apagar!';
+      $dados['erro'] = true;
+      $this->load->view('mensagem_ok',$dados);
     }
+    else{
+      /* Carrega o modelo */
+      $this->load->model('Usuarios'); 
+      /* Chama a função inserir do modelo */
+      if ($this->Usuarios->apaga($id)) {
+        redirect(base_url('admin1/Usuario'));
+      } else {
+        echo "error";
+      }
+    }
+  }
 }

@@ -21,8 +21,9 @@
 				<li <?php if($ativo == 3){echo 'class="active"';}?>><a href="<?php echo base_url('admin2/Reserva_lab');?>"><i class="fa fa-check-square fa-fw fa-lg hidden-sm"></i>&nbsp;Reservas</a></li>
 				<li <?php if($ativo == 4){echo 'class="active"';}?>><a href="<?php echo base_url('admin2/aula');?>"><i class="fa fa-calendar fa-fw fa-lg hidden-sm"></i>&nbsp;Calendario</a></li>
 				<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mais&nbsp;<i class="fa fa-plus-circle fa-fw fa-lg hidden-sm"></i></a>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">&nbsp;<i class="fa fa-plus-circle fa-fw fa-lg hidden-sm"></i>&nbsp;Mais&nbsp;<i class="fa fa-caret-down"></i></a>
 					<ul class="dropdown-menu" role="menu">
+						<li <?php if($ativo == 5){echo 'class="active"';}?>><a href="<?php echo base_url('admin2/Usuario');?>"><i class="fa fa-edit fa-fw fa-lg"></i>&nbsp;Editar Cadastro</a></li>
 						<li <?php if($ativo == 7){echo 'class="active"';}?>><a href="<?php echo base_url('ajuda');?>"><i class="fa fa-question fa-fw fa-lg"></i>&nbsp;Ajuda</a></li>
 						<li class="divider"></li>
 						<li class="dropdown-header">Desenvolvido por</i></li>						

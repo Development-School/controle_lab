@@ -1,10 +1,5 @@
 <?php $this->load->view('head');//Chama a view head.html?>
-
 <title>Usuarios</title>
-  <link rel="stylesheet" href="<?php echo base_url('assets/css/estilo.css') ?>" >
-  <style>  
-  .pdf {height:800px; width:100%;}
-  </style>
 </head>
 <body>
   <div class="container main">
@@ -43,8 +38,13 @@
         $options += array($tipo['tipoid'] => $tipo['tipodesc'],);    
       }        
       foreach($usuarios as $user) {
-        echo "<tr>";
-        echo '<td>'.$user['nome'].'</td>';
+        if ($user['usuarioid'] == $this->session->id) {
+          echo '<tr class="success">';
+          echo '<td><i class="fa fa-hand-o-right"></i>&nbsp;'.$user['nome'].'</td>';
+        }else{
+          echo "<tr>";
+          echo '<td>'.$user['nome'].'</td>';
+        }   
         echo '<td>'.$user['tipodesc'].'</td>';
         echo '<td>'.$user['cpf'].'</td>';
         echo '<td>'.$user['matricula'].'</td>';
