@@ -82,3 +82,5 @@ class Reserva_lab extends CI_Controller {
     }       
   }
 }
+/* End of file Reserva_lab.php */
+/* Location: ./application/controllers/admin1/Reserva_lab.php */

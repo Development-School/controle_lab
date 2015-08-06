@@ -125,3 +125,5 @@ class Labs extends CI_Controller {
     }
   }	
 }
+/* End of file Labs.php */
+/* Location: ./application/controllers/admin1/Labs.php */

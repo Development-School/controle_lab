@@ -70,3 +70,5 @@ class Login extends CI_Controller {
     redirect(base_url(),'refresh');
   }
 }
+/* End of file Login.php */
+/* Location: ./application/controllers/Login.php */

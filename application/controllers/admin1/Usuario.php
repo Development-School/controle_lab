@@ -131,3 +131,5 @@ class Usuario extends CI_Controller {
     }
   }
 }
+/* End of file Usuario.php */
+/* Location: ./application/controllers/admin1/Usuario.php */

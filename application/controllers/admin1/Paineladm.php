@@ -1,17 +1,17 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Paineladm extends CI_Controller {
-    /**
-     * Home Area Administrativa
-     *
-     * @package     CodeIgniter
-     * @subpackage  Controllers
-     * @category    Area Administrativa
-     * @author      Escritório Escola Dev Team
-     * @link        http://www.semanatrans.esy.es
-     * 
-     * Este Controller foi projetado para ser a Home da Area Administrativa!
-     */
+  /**
+   * Home Area Administrativa
+   *
+   * @package     CodeIgniter
+   * @subpackage  Controllers
+   * @category    Area Administrativa
+   * @author      Escritório Escola Dev Team
+   * @link        http://www.semanatrans.esy.es
+   * 
+   * Este Controller foi projetado para ser a Home da Area Administrativa!
+   */
     
   public function __construct(){
     parent::__construct();
@@ -30,22 +30,23 @@ class Paineladm extends CI_Controller {
     }      
   }
 
-    public function index() {
-        $id = $this->session->userdata('id');
-        $this->load->model('reserva');        
-        $dados['reservado'] = $this->reserva->list_reserva($id);
-        $this->load->view('admin1/paineladm',$dados); 
-    }
+  public function index() {
+    $id = $this->session->userdata('id');
+    $this->load->model('reserva');        
+    $dados['reservado'] = $this->reserva->list_reserva($id);
+    $this->load->view('admin1/paineladm',$dados); 
+  }
 
-    public function apaga($id){
-        /* Carrega o modelo */
-        $this->load->model('reserva');            
-
-        /* Chama a função inserir do modelo */
-        if ($this->reserva->apaga($id)) {
-            redirect(base_url('admin1/paineladm'));
-        } else {
-            echo "error";
-        }
+  public function apaga($id){
+    /* Carrega o modelo */
+    $this->load->model('reserva'); 
+    /* Chama a função inserir do modelo */
+    if ($this->reserva->apaga($id)) {
+      redirect(base_url('admin1/paineladm'));
+    } else {
+      echo "error";
     }
+  }
 }
+/* End of file Paineladm.php */
+/* Location: ./application/controllers/admin1/Paineladm.php */

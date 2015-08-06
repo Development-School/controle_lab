@@ -55,3 +55,5 @@ class Home extends CI_Controller{
 		$this->load->view('site/footer');
 	}
 }
+/* End of file Home.php */
+/* Location: ./application/controllers/Home.php */

@@ -67,7 +67,8 @@ class Reserva extends CI_Model {
       tblreserva.descricao,              
       tblunidade.unidadedesc,              
       tblcurso.cursodesc,              
-      tblreserva.cursoid,              
+      tblreserva.cursoid,
+      tblreserva.titulo_aula,              
       tblperiodo.periododesc              
       ');
     $this->db->from('tblreserva');          
@@ -83,6 +84,17 @@ class Reserva extends CI_Model {
     return $this->arruma($retono);  
   }
 
+  public function reserva_mes($ano, $mes)
+  {
+    // SELECT DISTINCT Day(data_aula) as dia 
+    // FROM tblreserva where MONTH(data_aula) = 07 AND YEAR(data_aula) = 2015
+    $this->db->select('DISTINCT Day(data_aula) as dia');
+    $this->db->from('tblreserva');
+    $this->db->where('YEAR(data_aula) =', $ano);
+    $this->db->where('MONTH(data_aula) =', $mes);
+    $retono = $this->db->get();
+    return $this->arruma($retono);
+  }
   /**
    * @todo Pega info de tabela
    * Esta Função pega os dados de uma tabela
@@ -101,3 +113,5 @@ class Reserva extends CI_Model {
     return $this->db->delete('tblreserva');     
   }
 }
+/* End of file Reserva.php */
+/* Location: ./application/models/Reserva.php */

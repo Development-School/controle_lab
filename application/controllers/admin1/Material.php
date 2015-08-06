@@ -98,3 +98,5 @@ class Material extends CI_Controller {
     }
   }
 }
+/* End of file Material.php */
+/* Location: ./application/controllers/admin1/Material.php */
