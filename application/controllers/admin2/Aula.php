@@ -30,9 +30,22 @@ class Aula extends CI_Controller {  /**
   }
   
   public function index($ano= '',$mes = ''){
+    if ($mes == '' && $ano == '') {
+      $mes = date('m');
+      $ano = date('Y');
+    }
     $dados['reservado'] = '';
     $dados['calendario'] = $this->calendario($ano,$mes);
     $this->load->view('admin2/aula_view',$dados);
+    /*
+    $this->load->model('reserva');
+    $reservado = $this->reserva->reserva_mes(2015,07);
+    echo "<pre>";
+    print_r ($reservado);
+    echo "</pre>";
+    foreach ($reservado as $diarese) {
+      echo $diarese['dia'].'<br>';
+    }*/
   }
 
   public function calendario($ano,$mes){    
@@ -62,11 +75,11 @@ class Aula extends CI_Controller {  /**
       {cal_row_start}<tr>{/cal_row_start}
       {cal_cell_start}<td>{/cal_cell_start}
 
-      {cal_cell_content}<a class="btn btn-default btn-block" href="{content}">{day}</a>{/cal_cell_content}
-      {cal_cell_content_today}<a class="btn btn-info btn-block" href="{content}">{day}</a>{/cal_cell_content_today}
+      {cal_cell_content}<a class="btn btn-default btn-success btn-block" href="{content}">{day}</a>{/cal_cell_content}
+      {cal_cell_content_today}<a class="btn btn-success btn-block" href="{content}">{day}</a>{/cal_cell_content_today}
 
-      {cal_cell_no_content}{day}{/cal_cell_no_content}
-      {cal_cell_no_content_today}<div class="highlight">{day}</div>{/cal_cell_no_content_today}
+      {cal_cell_no_content}<button class="btn btn-default btn-block">{day}</button>{/cal_cell_no_content}
+      {cal_cell_no_content_today}<button class="btn btn-default btn-block">{day}</button>{/cal_cell_no_content_today}
 
       {cal_cell_blank}&nbsp;{/cal_cell_blank}
 
@@ -76,14 +89,15 @@ class Aula extends CI_Controller {  /**
       {table_close}</table>{/table_close}
     ';    
     $this->load->library('calendar', $prefs);
+    $this->load->model('reserva');
+    $dias = $this->reserva->reserva_mes($ano,$mes);
     $data = array();
-    for ($i= 1; $i <= $this->calendar->get_total_days($mes,$ano); $i++) {
-      if ($i < 10) {
-        $data += array($i => base_url('admin2/aula/reservas_dia').'/'.$ano.$mes.'0'.$i,);
+    foreach ($dias as $d) {
+      if ($d['dia'] < 10) {
+        $data += array($d['dia'] => base_url('admin2/aula/reservas_dia').'/'.$ano.$mes.'0'.$d['dia'],);
       } 
-      else $data += array($i => base_url('admin2/aula/reservas_dia').'/'.$ano.$mes.$i,); 
+      else $data += array($d['dia'] => base_url('admin2/aula/reservas_dia').'/'.$ano.$mes.$d['dia'],);
     }
-
     return $this->calendar->generate($ano,$mes,$data);
   }
 
@@ -96,3 +110,5 @@ class Aula extends CI_Controller {  /**
     $this->load->view('admin2/aula_view',$dados);    
   }
 }
+/* End of file Aula.php */
+/* Location: ./application/controllers/admin2/Aula.php */

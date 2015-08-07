@@ -48,6 +48,8 @@
                       <dd>'.$reserva['unidadedesc'].'</dd>
                       <dt>Laboratório:</dt>
                       <dd>'.$reserva['labnome'].'</dd>
+                      <dt>Tema:</dt>
+                      <dd>'.$reserva['titulo_aula'].'</dd>
                       <dt>Descrição:</dt>
                       <dd>'.$reserva['descricao'].'</dd>
                     </dl><br><br>';

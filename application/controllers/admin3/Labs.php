@@ -21,7 +21,7 @@ class Labs extends CI_Controller {
      * Caso o tipo não seja igual ao local da area admim
      * o usuario e redirecionado
      */
-    $local = 2;
+    $local = 3;
     $tipo = $_SESSION['tipo'];           
     if(!isset($_SESSION['logado'])){            
       redirect(base_url());            
@@ -37,8 +37,8 @@ class Labs extends CI_Controller {
       $dados['labs'][$unidade['unidadeid']] = $this->Lab_model->labs_unid($unidade['unidadeid']);
     }
     $dados['unidade'] = $this->Lab_model->gettabela('tblunidade');
-    $this->load->view('admin2/laboratorios',$dados);
+    $this->load->view('admin3/laboratorios',$dados);
   }  
 }
 /* End of file Labs.php */
-/* Location: ./application/controllers/admin2/Labs.php */
+/* Location: ./application/controllers/admin3/Labs.php */

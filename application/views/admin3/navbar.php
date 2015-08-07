@@ -29,6 +29,7 @@
 				<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-plus-circle fa-fw fa-lg hidden-sm"></i>&nbsp;Mais&nbsp;<i class="fa fa-caret-down"></i></a>
 					<ul class="dropdown-menu" role="menu">
+						<li <?php if($ativo == 5){echo 'class="active"';}?>><a href="<?php echo base_url('admin3/Usuario');?>"><i class="fa fa-edit fa-fw fa-lg"></i>&nbsp;Editar Cadastro</a></li>
 						<li <?php if($ativo == 7){echo 'class="active"';}?>><a href="<?php echo base_url('ajuda');?>"><i class="fa fa-question fa-fw fa-lg"></i>&nbsp;Ajuda</a></li>
 						<li class="divider"></li>
 						<li class="dropdown-header">Desenvolvido por</i></li>						

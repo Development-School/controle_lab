@@ -30,12 +30,12 @@
                   'title' => 'Editar',
                   'class' => 'pull-left btn btn-primary'
                 );
-        echo '<td>'.anchor('admin3/Material/editar/'.$material['materialid'], '<i class="fa fa-cog fa-fw fa-lg"></i>&nbsp;Editar', $atts).'</td>';
+        echo '<td>'.anchor('admin1/Material/editar/'.$material['materialid'], '<i class="fa fa-cog fa-fw fa-lg"></i>&nbsp;Editar', $atts).'</td>';
         $atts = array(
                   'title' => 'Excluir',
                   'class' => 'pull-left btn btn-danger'
                 );
-        echo '<td>'.anchor('admin3/Material/apaga/'.$material['materialid'], '<i class="fa fa-trash-o fa-fw fa-lg"></i>&nbsp;Excluir', $atts).'</td>';
+        echo '<td>'.anchor('admin1/Material/apaga/'.$material['materialid'], '<i class="fa fa-trash-o fa-fw fa-lg"></i>&nbsp;Excluir', $atts).'</td>';
         echo "</tr>";
         }
     echo "</table></div>";
