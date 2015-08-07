@@ -94,5 +94,6 @@ class Lab_model extends CI_Model {
     $this->db->where('materialid', $id);
     return $this->db->update('tblmaterial', $data);
   }
-
 }
+/* End of file Lab_model.php */
+/* Location: ./application/models/Lab_model.php */

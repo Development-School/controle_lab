@@ -1,5 +1,32 @@
 <?php $this->load->view('head');//Chama a view head.html?>
   <title>Reserva de Laboratórios</title>
+  <script>
+  $(function(){     
+     $("select[name=curso]").change(function(){ 
+        curso = $(this).val();         
+        if ( curso === '')
+            return false;         
+        resetaCombo('disciplina');             
+        $.getJSON( '<?php echo site_url("admin1/Reserva_lab/getDisciplina") ?>/' + curso, function (data){ 
+            var option = new Array(); 
+            $.each(data, function(i, obj){ 
+                option[i] = document.createElement('option');
+                $( option[i] ).attr( {value : obj.disciplinaid} );
+                $( option[i] ).append( obj.disciplinadesc ); 
+                $("select[name='disciplina']").append( option[i] );         
+            });
+     
+        });     
+    }); 
+	}); 
+	function resetaCombo( el ) {
+	   $("select[name='"+el+"']").empty();
+	   var option = document.createElement('option');                                  
+	   $( option ).attr( {value : ''} );
+	   $( option ).append( 'Escolha a Disciplina' );
+	   $("select[name='"+el+"']").append( option );
+	}
+  </script>
 </head>
 <body>
   <div class="container main">
@@ -35,7 +62,7 @@
 
     //Campo de Unidade
     echo $formgroup;
-    $options = array('' => '',); 
+    $options = array('' => 'Escolha a Unidade',); 
     foreach($unidade as $unidade) {
       $options += array($unidade['unidadeid'] => $unidade['unidadedesc'],);    
     }
@@ -47,7 +74,7 @@
 
     //Campo de Curso
     echo $formgroup;
-    $options = array('' => '',); 
+    $options = array('' => 'Escolha o Curso',); 
     foreach($curso as $curso) {
       $options += array($curso['cursoid'] => $curso['cursodesc'],);    
     }
@@ -59,10 +86,10 @@
 
     //Campo das Disciplinas
     echo $formgroup;
-    $options = array('' => '',);   
-    foreach($disciplina as $disciplina) {
-      $options += array($disciplina['disciplinaid'] => $disciplina['disciplinadesc'],);    
-    }
+    $options = array('' => 'Escolha a Disciplina',);   
+    //foreach($disciplina as $disciplina) {
+    //  $options += array($disciplina['disciplinaid'] => $disciplina['disciplinadesc'],);    
+    //}
     echo form_label('DISCIPLINA','disciplina',$attlabel);
     echo $taminput;
     echo form_dropdown('disciplina',$options,'',$clss);
@@ -71,7 +98,7 @@
 
     //Campo dos Periodos
     echo $formgroup;
-    $options = array('' => '',);
+    $options = array('' => 'Escolha o periodo',);
     foreach($periodo as $periodo) {
       $options += array($periodo['periodoid'] => $periodo['periododesc'],);    
     }
@@ -99,7 +126,7 @@
 
     //Campo de Turno
     echo $formgroup;    
-    $options = array('' => '',);
+    $options = array('' => 'Escolha o Turno',);
     foreach($turno as $turno) {
       $options += array($turno['turnoid']  => $turno['turnodesc'],);    
     }
@@ -111,7 +138,7 @@
 
     //Campo dos Labs
     echo $formgroup;
-    $options = array('' => '',);
+    $options = array('' => 'Escolha o Laboratório',);
     foreach($lab as $lab) {
       $options += array($lab['labid']  => $lab['labnome'],);    
     }
@@ -128,7 +155,8 @@
       "name" => "titulo",
       "id" => "titulo",
       "value" => set_value('titulo'),
-      "class" => "form-control"            
+      "class" => "form-control",
+      "placeholder" => "Digite o Tema da Aula"
     );
     echo form_label('TITULO DA AULA','titulo',$attlabel);
     echo $taminput;
@@ -143,7 +171,8 @@
       "id" => "descricao",
       "value" => set_value('descricao'),
       "class" => "form-control",                  
-      "rows" => "5",                  
+      "rows" => "5",
+      "placeholder" => "Digite uma descrição para a Aula"
     );                 
     echo form_label('DESCRIÇÃO','descricao',$attlabel);
     echo $taminput;
