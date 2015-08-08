@@ -21,13 +21,13 @@ class Reserva_lab extends CI_Controller {
 	 * Caso o tipo não seja igual ao local da area admim
 	 * o usuario e redirecionado
 	 */
-	$local = 1;
-	$tipo = $_SESSION['tipo'];           
-	if(!isset($_SESSION['logado'])){            
-	  redirect(base_url());            
-	}elseif($tipo != $local){            
-	  redirect(base_url());            
-	}      
+		$local = 1;
+		$tipo = $_SESSION['tipo'];           
+		if(!isset($_SESSION['logado'])){            
+		  redirect(base_url());            
+		}elseif($tipo != $local){            
+		  redirect(base_url());            
+		}      
   }
 
   public function index() {
@@ -44,10 +44,10 @@ class Reserva_lab extends CI_Controller {
   public function getDisciplina($id_curso)
   {
 		$this->load->model('Curso_model');
-		$cidades = $this->Curso_model->grade($id_curso);
-		if( empty ( $cidades ) ) 
+		$disciplina = $this->Curso_model->grade($id_curso);
+		if( empty ($disciplina) ) 
 			return '{ "nome": "Nenhuma cidade encontrada" }';
-		echo json_encode($cidades);
+		echo json_encode($disciplina);
 		return;
 	}
   
