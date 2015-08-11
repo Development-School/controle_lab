@@ -53,28 +53,9 @@ footer{
 }
 
 /*Css que se aplica em celulares*/
-.radioee{
-  float: left;
-  width: 18px;
-  height: 18px !important; 
-}
-
 div+fieldset{  
   margin-top: 100px;
 }
-.btncfp{
-  font-size: 18px;
-   
-  letter-spacing: 1px;
-  width: 100%;
-  margin-bottom: 10px;
-  -webkit-border-radius: 24px;
-   -moz-border-radius: 24px;
-   -ms-border-radius: 24px;
-   -o-border-radius: 24px;
-  border-radius: 24px;
-}
-
 .nome_usuario{
   font-size: 12px;
   text-align: right;
