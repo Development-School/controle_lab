@@ -1,4 +1,4 @@
-<section id="Sobre">
+<section id="Sobre" class="container main col-sm-12">
 	<div class="row bg-inst">
 		<div class="seta">
 			<div class="seta-baixo"></div>

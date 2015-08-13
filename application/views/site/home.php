@@ -22,7 +22,7 @@
 			<li><a class="menu-item" href="login">Login</a></li>
 		</ul>
 	</nav> -->
-	<div class="container">
+	<div class="container main">
 		
 		<div class="tipo-lab">
 			<h2>Escolha o tipo de laboratório que deseja consultar</h2>

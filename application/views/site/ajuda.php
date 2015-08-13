@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container main">
   <div class="row">
     <div class="ajuda">
             <h2 class="about-title" style="letter-spacing:0.1em;">Perguntas mais frequentes</h2><br>
