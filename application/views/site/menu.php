@@ -61,7 +61,6 @@
 	</script>
 </head>
 <body id="voltarTopo">
-
 	<!--  selo pitagoras-->
 	<div class="selo-pitagoras hidden-phone">
 		<img src="<?php echo base_url('assets/imgs/selo-pitagoras.svg') ?>" alt="">
@@ -69,25 +68,17 @@
 	<!-- fim selo -->
 
 	<div class="container">
-		<!-- <img style="float: left;" src="../img/ilabicon.00_jpg_srb" >
-		<h1 style="text-align: center; font-size: 24px; letter-spacing:0.4em; font-weight: bold;">
-			SISTEMA DE GERENCIAMENTO DE<br>LABORATÓRIOS
-		</h1> -->
-
 		<div class= "row-fluid">
 			<div class= "box-top">
 				<div class="logo-img"><a href="#"><img src="<?php echo base_url('assets/imgs/logo.jpg') ?>" alt=""></a></div>
 				<div class="box-title hidden-phone"><h1 class="title"><p>Sistema de gerenciamento de</p> <p>laboratórios</p></h1></div>
 			</div>
 		</div>
-
 		<!-- menu -->
 		<header>
 			<input type="checkbox" id="control-nav" />
 			<label for="control-nav" class="control-nav"></label>
-			<label for="control-nav" class="control-nav-close"></label>
-			
-			
+			<label for="control-nav" class="control-nav-close"></label>			
 				<nav class="nav-menu">
 					<ul class="menu">
 						<li><a class="menu-item active" href="<?php echo base_url('Home')?>">Início</a></li>

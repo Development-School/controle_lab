@@ -69,31 +69,6 @@ hr{
 	letter-spacing: 0.4em;
 }
 
-
-
-
-/* .logo{
-	width: auto;
-	height: 193px;
-}
-.logo-img{
-	display: block;
-	position: absolute;
-	float: left;
-	width: 241px;
-	height: 193px;
-}
-.box-top{
-	width: auto;
-	min-height: 193px;
-}
-.title{
-	position: absolute;
-	margin-top: 59px;
-	float: right;
-	text-align: center;
-	text-transform: uppercase;
-} */
 .menu{
 	text-align: center;
 	display: block;
@@ -388,16 +363,6 @@ hr{
     cursor: pointer;
 }
 
-/*footer*/
-/*footer{
-	width: auto;
-	height: 50px;
-}
-.footer{
-	width: auto;
-	height: 50px;
-	margin: 50px;
-}*/
 .create{
 	text-align: right;
 	color: rgb(62, 62, 62);
@@ -446,6 +411,3 @@ footer {
   margin-left: auto;
   margin-right: auto;
 }
-/* tentativas collapse */
-
-/* falhou ='( */

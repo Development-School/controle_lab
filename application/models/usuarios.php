@@ -78,6 +78,7 @@ class Usuarios extends CI_Model {
   public function atualiza($id, $data){    
     $this->db->where('usuarioid', $id);
     return $this->db->update('tblusuario', $data);     
-  }
-       
+  }       
 }
+/* End of file Usuarios.php */
+/* Location: ./application/models/Usuarios.php */
