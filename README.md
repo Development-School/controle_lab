@@ -1,7 +1,7 @@
 ![wxWidgets Logo](http://rodrigom.tk/controle_lab/assets/imgs/logo.jpg)
 # Sistema Gerenciador de Laboratórios 
 
-[![Version 0.5](https://img.shields.io/badge/version-0.5-blue.svg)](https://github.com/esc2/controle_lab/releases/tag/v0.5-beta)
+[![Version 0.5](https://img.shields.io/badge/version-0.5-blue.svg)](https://github.com/esc2/controle_lab/releases/tag/v0.9-beta)
 [![requirement](https://img.shields.io/badge/Base-Codeigniter-orange.svg)](https://github.com/bcit-ci/CodeIgniter)
 
 Sistema de controle Laboratórios da Facudade Pitagoras
