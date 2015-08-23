@@ -2,11 +2,15 @@
 <title>Sistema Gerenciador de Laboratórios</title> 
 </head>
 <body>
-  <div class="container">
+  <div class="container main">
     <div class="row">
+      <header><div class="container containerr">
+        <div class="logop"><a href="<?php echo base_url() ?>" title="iLAB"><img src="<?php echo base_url('assets/imgs/logoilab.svg') ?>" alt="iLAB"></a></div>
+        <div class="title-fluid hidden-xs">
+          <h1>Sistema de Gerenciamento de Laboratórios</h1>
+        </div>
+      </div></header>
       <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
-        <img class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2" src="<?php echo base_url('assets/imgs/logo.svg') ?>" height="100" alt="Sistema Gerenciador de Laboratórios">
-      	<h1 class="text-center">Sistema Gerenciador de Laboratórios</h1>
       	<div class="form-group">        			
       		<?php		
       		echo form_open('Login/logar','class="form-horizontal"'); 

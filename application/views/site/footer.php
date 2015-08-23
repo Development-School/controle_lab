@@ -1,16 +1,19 @@
+<!-- footer -->
 <footer>
-	<div class="row center-block">
-		<div class="col-sm-6">
-			<img class="footer-logopitagoras" src="<?php echo base_url('assets/imgs/logopitagoras.jpg') ?>" alt="">
+	<div class="footer">
+		<div class="logo-pitagoras">
+			<a href="http://www.faculdadepitagoras.com.br/" target="_blank">
+				<img src="<?php echo base_url('assets/imgs/logoPitagoras_footer2.png') ?>" alt="Pitágoras">
+			</a>
 		</div>
-		<div class="col-sm-6">
-			<p  class="create">Desenvolvido por <a class="site-esc" href="#">Escritório Escola</a> &copy; 2015</p>
-			<a href="#"><img class="esc-img" src="<?php echo base_url('assets/imgs/esc.png') ?>"></a>
+		<div class="logo-kroton">
+			<a href="http://www.kroton.com.br/" target="_blank">
+				<img src="<?php echo base_url('assets/imgs/logo-kroton-branco.png') ?>" alt="Kroton">
+			</a>
+		</div>
+		<div class="esc2">
+			<p>Desenvolvido por <a href="http://semanatrans.esy.es/" target="_blank">Escritório Escola</a> &copy; 2015</p>
+			<a href="http://semanatrans.esy.es/" target="_blank"><img src="<?php echo base_url('assets/imgs/logoesc2_footer.png') ?>" alt="Escritório Escola"></a>
 		</div>
 	</div>
-</footer> 
-<div class="btn-voltarTopo">
-	<img class="voltarTopo" onclick="$j('html,body').animate({scrollTop: $j('#voltarTopo').offset().top}, 800);" src="<?php echo base_url('assets/imgs/arrowup.svg') ?>" alt="">
-</div>
-</body>
-</html>
+</footer>
