@@ -6,7 +6,7 @@ class Home extends CI_Controller {
 	public function index(){
 		$this->load->view('site/menu');
 		$this->load->view('site/home');
-		$this->load->view('site/footer');
+		$this->load->view('footer');
 	}
 	public function calendario($ano= '',$mes = ''){
     if ($mes == '' && $ano == '') {
@@ -20,27 +20,27 @@ class Home extends CI_Controller {
 	public function lista(){
 		$this->load->view('site/menu');
 		$this->load->view('site/lista');
-		$this->load->view('site/footer');
+		$this->load->view('footer');
 	}
 	public function sobre(){
 		$this->load->view('site/menu');
 		$this->load->view('site/sobre');
-		$this->load->view('site/footer');
+		$this->load->view('footer');
 	}
 	public function ajuda(){
     $this->load->view('site/menu');
     $this->load->view('site/ajuda');
-    $this->load->view('site/footer');
+    $this->load->view('footer');
   }
   public function login(){
 		$this->load->view('site/menu');
 		$this->load->view('site/login');
-		$this->load->view('site/footer');
+		$this->load->view('footer');
 	}
 	public function laboratorios(){
 		$this->load->view('site/menu');
 		$this->load->view('site/lista');
-		$this->load->view('site/footer');
+		$this->load->view('footer');
 	}
 
 	public function mycalendario($ano,$mes){    

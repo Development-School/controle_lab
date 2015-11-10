@@ -1,5 +1,4 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -10,13 +9,38 @@
 |
 |	http://example.com/
 |
-| If this is not set then CodeIgniter will guess the protocol, domain and
-| path to your installation.
+| WARNING: You MUST set this value!
+|
+| If it is not set, then CodeIgniter will try guess the protocol and path
+| your installation, but due to security concerns the hostname will be set
+| to $_SERVER['SERVER_ADDR'] if available, or localhost otherwise.
+| The auto-detection mechanism exists only for convenience during
+| development and MUST NOT be used in production!
+|
+| If you need to allow multiple domains, remember that this file is still
+| a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
-$config['base_url'].= "://" . $_SERVER['HTTP_HOST'];
-$config['base_url'].= dirname($_SERVER['SCRIPT_NAME']);
+
+$allowed_domains = array('rodrigom.tk/controle_lab', 'rodrigoalves.me/controle_lab');
+$default_domain  = 'localhost/controle_lab';
+if (in_array($_SERVER['HTTP_HOST'], $allowed_domains, TRUE))
+{
+  $domain = $_SERVER['HTTP_HOST'];
+}
+else
+{
+  $domain = $default_domain;
+}
+
+if ( ! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+{
+  $config['base_url'] = 'https://'.$domain;
+}
+else
+{
+  $config['base_url'] = 'http://'.$domain;
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -93,7 +117,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = TRUE;
 
 
 /*

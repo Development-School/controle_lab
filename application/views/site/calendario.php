@@ -37,4 +37,4 @@
 	});
 </script>
 
-<?php $this->load->view('site/footer'); ?>
+<?php $this->load->view('footer'); ?>
