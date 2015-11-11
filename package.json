@@ -1,0 +1,19 @@
+{
+  "name": "controle_lab",
+  "version": "1.0.0",
+  "description": "Sistema de controle Laboratórios da Facudade PitagorasSistema de controle Laboratórios da Facudade Pitagoras",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Rodrigo54@github.com/esc2/controle_lab.git"
+  },
+  "author": "Escritorio Escola",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/esc2/controle_lab/issues"
+  },
+  "homepage": "http://rodrigom.tk/controle_lab/"
+}
