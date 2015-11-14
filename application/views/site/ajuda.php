@@ -12,7 +12,7 @@
   <p class="about">Apenas professores, coordenadores e técnicos dos laboratórios da instituição. Para realizar login será necessário uma conta já cadastrada.</p><br>
          
   <h2 class="about">Em que mais posso ajuda-lo?</h2>
-  <p class="about">Sou um parágrafo. Clique aqui para editar-me e adicionar o seu próprio texto. É fácil! Basta clicar em "Editar Texto" ou clicar duas vezes sobre mim e você poderá adicionar o seu próprio conteúdo e trocar fontes. Sinta-se à vontade para arrastar-me e soltar em qualquer lugar em sua página. Sou um ótimo lugar para você contar sua história e permitir que seus clientes saibam um pouco mais sobre você.</p><br>
+  <p class="about">Sou um parágrafo. Clique aqui para editar-me e adicionar o seu próprio texto. É fácil! Basta clicar em "Editar Texto" ou clicar duas vezes sobre mim e você poderá adicionar o seu próprio conteúdo e trocar fontes. Sinta-se a vontade para arrastar-me e soltar em qualquer lugar em sua página. Sou um ótimo lugar para você contar sua história e permitir que seus clientes saibam um pouco mais sobre você.</p><br>
   <hr>
   </section>
 </div>

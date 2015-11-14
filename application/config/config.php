@@ -22,8 +22,8 @@
 |
 */
 
-$allowed_domains = array('rodrigom.tk/controle_lab', 'rodrigoalves.me/controle_lab');
-$default_domain  = 'localhost/controle_lab';
+$allowed_domains = array('rodrigom.tk', 'rodrigoalves.me');
+$default_domain  = 'localhost';
 if (in_array($_SERVER['HTTP_HOST'], $allowed_domains, TRUE))
 {
   $domain = $_SERVER['HTTP_HOST'];
@@ -35,11 +35,11 @@ else
 
 if ( ! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
 {
-  $config['base_url'] = 'https://'.$domain;
+  $config['base_url'] = 'https://'.$domain .'/controle_lab';
 }
 else
 {
-  $config['base_url'] = 'http://'.$domain;
+  $config['base_url'] = 'http://'.$domain .'/controle_lab';
 }
 
 /*
@@ -154,7 +154,7 @@ $config['subclass_prefix'] = 'MY_';
 | Note: This will NOT disable or override the CodeIgniter-specific
 |	autoloading (application/config/autoload.php)
 */
-$config['composer_autoload'] = FALSE;
+$config['composer_autoload'] = true;
 
 /*
 |--------------------------------------------------------------------------

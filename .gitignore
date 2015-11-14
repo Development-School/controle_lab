@@ -52,3 +52,11 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+.grunt
+.ftppass
+
+node_modules
+
+application/cache/*
+application/logs/*

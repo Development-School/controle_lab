@@ -2,6 +2,12 @@
 
 class Reserva extends CI_Model {
 
+  public function __construct()
+  {
+    parent::__construct();
+    //Do your magic here
+  }
+
   /**
    * @todo CADASTRO DE USUÁRIO
    * Esta Função salva as informações na tabela

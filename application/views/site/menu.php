@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+	<meta charset="utf-8">
 	<meta name="author" content="Escritório Escola">
 	<meta name="keywords" content="Escritório Escola">
 	<meta name="robots" content="index">  	

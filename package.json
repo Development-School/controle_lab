@@ -1,11 +1,8 @@
 {
   "name": "controle_lab",
+  "title": "Ilab",
   "version": "1.0.0",
-  "description": "Sistema de controle Laboratórios da Facudade PitagorasSistema de controle Laboratórios da Facudade Pitagoras",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "Sistema de controle Laboratórios da Facudade Pitagoras",
   "repository": {
     "type": "git",
     "url": "git+https://Rodrigo54@github.com/esc2/controle_lab.git"
@@ -15,5 +12,12 @@
   "bugs": {
     "url": "https://github.com/esc2/controle_lab/issues"
   },
-  "homepage": "http://rodrigom.tk/controle_lab/"
+  "homepage": "http://rodrigom.tk/controle_lab/",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-banner": "^0.6.0",
+    "grunt-contrib-less": "^1.1.0",
+    "grunt-contrib-uglify": "^0.10.1",
+    "grunt-ftpush": "^0.3.3"
+  }
 }
