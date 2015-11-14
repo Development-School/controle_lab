@@ -33,7 +33,6 @@ class Reserva_lab extends CI_Controller {
   public function index() {
 	$this->load->model('reserva');
 	$dados['curso'] = $this->reserva->gettabela('tblcurso');
-	//$dados['disciplina'] = $this->reserva->gettabela('tbldisciplina');
 	$dados['turno'] = $this->reserva->gettabela('tblturno');
 	$dados['unidade'] = $this->reserva->gettabela('tblunidade');
 	$dados['periodo'] = $this->reserva->gettabela('tblperiodo');
@@ -41,16 +40,6 @@ class Reserva_lab extends CI_Controller {
 	$this->load->view('admin1/cadastro_reserva',$dados);      
   }
 
-  public function getDisciplina($id_curso)
-  {
-		$this->load->model('Curso_model');
-		$disciplina = $this->Curso_model->grade($id_curso);
-		if( empty ($disciplina) ) 
-			return '{ "nome": "Nenhuma cidade encontrada" }';
-		echo json_encode($disciplina);
-		return;
-	}
-  
   public function receber(){
 	//Regras da Validação
 	$this->form_validation->set_rules('unidade', 'UNIDADE', 'required');

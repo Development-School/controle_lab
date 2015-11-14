@@ -10,7 +10,7 @@
 					<span class="icon-bar"></span>
 				</button>
 			<a class="navbar-brand" style="font-size: 14px;" href="<?php echo base_url('admin1/paineladm');?>">
-			<img style="height: 100%;margin-right: 5px;" alt="Brand" class="pull-left" src="<?php echo base_url('assets/imgs/favicons/favicon-32x32.png') ?>">
+			<img style="height: 100%;margin-right: 5px;" alt="Brand" class="pull-left" src="<?php echo base_url('assets/imgs/logo.png') ?>">
 			ILAB
 			</a>
 			</div>

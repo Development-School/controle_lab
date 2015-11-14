@@ -117,7 +117,7 @@ class Home extends CI_Controller {
                 <dt>Curso:</dt>
                 <dd>'.$reserva['cursodesc'].'</dd>
                 <dt>Disciplina:</dt>
-                <dd>'.$reserva['disciplinadesc'].'</dd>
+                <dd>'.$reserva['disciplina'].'</dd>
                 <dt>Periodo:</dt>
                 <dd>'.$reserva['periododesc'].'</dd>
                 <dt>Turno:</dt>

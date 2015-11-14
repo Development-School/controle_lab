@@ -1,33 +1,6 @@
 <?php $this->load->view('head');//Chama a view head.html?>
   <title>Reserva de Laboratórios</title>
-  <script>
-  $(function(){     
-     $("select[name=curso]").change(function(){ 
-        curso = $(this).val();         
-        if ( curso === '')
-            return false;         
-        resetaCombo('disciplina');             
-        $.getJSON( '<?php echo site_url("admin1/Reserva_lab/getDisciplina") ?>/' + curso, function (data){ 
-            var option = new Array(); 
-            $.each(data, function(i, obj){ 
-                option[i] = document.createElement('option');
-                $( option[i] ).attr( {value : obj.disciplinaid} );
-                $( option[i] ).append( obj.disciplinadesc ); 
-                $("select[name='disciplina']").append( option[i] );         
-            });
-     
-        });     
-    }); 
-	}); 
-	function resetaCombo( el ) {
-	   $("select[name='"+el+"']").empty();
-	   var option = document.createElement('option');                                  
-	   $( option ).attr( {value : ''} );
-	   $( option ).append( 'Escolha a Disciplina' );
-	   $("select[name='"+el+"']").append( option );
-	}
-  </script>
-</head>
+  </head>
 <body>
   <div class="container main">
   <?php /* Chama a View da Barra de navegação*/
@@ -84,16 +57,19 @@
     echo form_error('curso');  
     echo $fimdiv;
 
-    //Campo das Disciplinas
-    echo $formgroup;
-    $options = array('' => 'Escolha a Disciplina',);   
-    //foreach($disciplina as $disciplina) {
-    //  $options += array($disciplina['disciplinaid'] => $disciplina['disciplinadesc'],);    
-    //}
-    echo form_label('DISCIPLINA','disciplina',$attlabel);
+    //Campo de Disciplina
+    echo $formgroup;    
+    $att = array(
+      "type" => "text",
+      "name" => "disciplina",
+      "id" => "disciplina",
+      "value" => set_value('disciplina'),
+      "class" => "form-control",
+      "placeholder" => "Digite o nome da Disciplina"
+    );
+    echo form_label('Disciplina','disciplina',$attlabel);
     echo $taminput;
-    echo form_dropdown('disciplina',$options,'',$clss);
-    echo form_error('disciplina');  
+    echo form_input($att);
     echo $fimdiv;
 
     //Campo dos Periodos

@@ -58,22 +58,6 @@
     echo form_dropdown('periodo',$options, $tipolab ,$clss);
     echo $fimdiv;    
 
-    //Campo de disciplina
-    if(isset($disciplina)){
-      $tipound = $disciplina;   
-    }else {
-      $tipound = '';
-    }
-    echo $formgroup;
-    $options = array(); 
-    foreach($disci as $disci) {
-      $options += array($disci['disciplinaid'] => $disci['disciplinadesc'],);    
-    }
-    echo form_label('DISCIPLINA','disciplina',$attlabel);
-    echo $taminput;
-    echo form_dropdown('disciplina[]',$options, $tipound, $clss.'multiple="multiple"');
-    echo $fimdiv;
-
     echo '<div class="form-group">';
     echo '<div class="col-sm-offset-2 col-sm-6">';
     //Imprime Mensagens de erro
@@ -100,17 +84,4 @@
   </div>
   </div>
 </div>
-<script type="text/javascript">
-  var demo = $('select[name="disciplina[]"]').bootstrapDualListbox({
-  nonSelectedListLabel: 'Não Selecionados',
-  selectedListLabel: 'Selecionados',
-  preserveSelectionOnMove: 'moved',
-  infoText: 'Mostrando todos {0}',
-  infoTextEmpty: 'Lista Vazia',
-  filterPlaceHolder: 'Filtro',
-  filterTextClear: 'Mostrar tudo',
-  infoTextFiltered: '<span class="label label-warning">Filtrado</span>  {0} de {1}',
-  moveOnSelect: false 
-});
-</script>
 <?php $this->load->view('footer');//Chama a view footer?>

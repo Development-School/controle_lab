@@ -23,7 +23,7 @@ module.exports = function(grunt) {
           'less',
           'src_img',
           '.git',
-          'bd_site_cmaisd.sql',
+          'controle_lab.sql',
           'README.md',
           'node_modules',
           'grunt',

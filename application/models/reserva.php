@@ -37,7 +37,7 @@ class Reserva extends CI_Model {
   public function list_reserva($idusuario){  
     $this->db->select('
       tbllaboratorio.labnome,  
-      tbldisciplina.disciplinadesc, 
+      tblreserva.disciplina, 
       tblturno.turnodesc, 
       tblreserva.data_aula,              
       tblreserva.reservaid,              
@@ -56,7 +56,6 @@ class Reserva extends CI_Model {
     $this->db->join('tblturno','tblreserva.turnoid = tblturno.turnoid','inner');
     $this->db->join('tblperiodo','tblreserva.periodoid = tblperiodo.periodoid','inner');
     $this->db->join('tblcurso','tblreserva.cursoid = tblcurso.cursoid','inner');
-    $this->db->join('tbldisciplina','tblreserva.disciplinaid = tbldisciplina.disciplinaid','inner');
     $this->db->where('tblreserva.usuarioid =', $idusuario);
     $retono = $this->db->get();
     return $this->arruma($retono);  
@@ -65,7 +64,7 @@ class Reserva extends CI_Model {
   public function reserva_dia($data){  
     $this->db->select('
       tbllaboratorio.labnome,  
-      tbldisciplina.disciplinadesc, 
+      tblreserva.disciplina, 
       tblturno.turnodesc, 
       tblreserva.data_aula,              
       tblreserva.reservaid,              
@@ -84,7 +83,6 @@ class Reserva extends CI_Model {
     $this->db->join('tblturno','tblreserva.turnoid = tblturno.turnoid','inner');
     $this->db->join('tblperiodo','tblreserva.periodoid = tblperiodo.periodoid','inner');
     $this->db->join('tblcurso','tblreserva.cursoid = tblcurso.cursoid','inner');
-    $this->db->join('tbldisciplina','tblreserva.disciplinaid = tbldisciplina.disciplinaid','inner');
     $this->db->where('tblreserva.data_aula =', $data);
     $retono = $this->db->get();
     return $this->arruma($retono);  

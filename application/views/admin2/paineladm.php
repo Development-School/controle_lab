@@ -29,7 +29,7 @@
       foreach($reservado as $reserva) {
         echo "<tr>";
         echo '<td>'.$reserva['labnome'].'</td>';
-        echo '<td>'.$reserva['disciplinadesc'].'</td>';
+        echo '<td>'.$reserva['disciplina'].'</td>';
         echo '<td>'.$reserva['turnodesc'].'</td>';
         echo '<td>'.strftime('%d %b %Y', strtotime($reserva['data_aula'])).'</td>';
         echo '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exibe'.$reserva['reservaid'].'">Visualizar</button>
@@ -46,7 +46,7 @@
                       <dt>Curso:</dt>
                       <dd>'.$reserva['cursodesc'].'</dd>
                       <dt>Disciplina:</dt>
-                      <dd>'.$reserva['disciplinadesc'].'</dd>
+                      <dd>'.$reserva['disciplina'].'</dd>
                       <dt>Periodo:</dt>
                       <dd>'.$reserva['periododesc'].'</dd>
                       <dt>Turno:</dt>

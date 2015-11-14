@@ -33,19 +33,6 @@ class Curso_model extends CI_Model {
     return $this->arruma($retono);  
   }
 
-  public function grade($cursoid){  
-    $this->db->select('
-      tbldisciplina.disciplinaid,              
-      tbldisciplina.disciplinadesc              
-      ');
-    $this->db->from('tblcurso');          
-    $this->db->join('tblgrade','tblcurso.cursoid = tblgrade.cursoid','inner');
-    $this->db->join('tbldisciplina','tblgrade.disciplinaid = tbldisciplina.disciplinaid','inner');
-    $this->db->where('tblcurso.cursoid =', $cursoid);
-    $retono = $this->db->get();
-    return $this->arruma($retono);  
-  }
-
   /**
    * @todo Pega info de tabela
    * Esta Função pega os dados de uma tabela
@@ -55,7 +42,7 @@ class Curso_model extends CI_Model {
     return $this->arruma($retono);
   }
 
-  public function cadastro($dadoscurso, $dadosperiodo, $dadosdisc)
+  public function cadastro($dadoscurso, $dadosperiodo)
   {
     $this->db->insert('tblcurso', $dadoscurso);
     //A função insert_id() retorna o ultimo id inserido no bd
@@ -65,18 +52,10 @@ class Curso_model extends CI_Model {
     /*echo "<pre>";
     var_dump($dadosdisc);
     echo "</pre>";*/
-    foreach ($dadosdisc as $dados) {
-      $grade['cursoid'] = $curso_id;
-      $grade['disciplinaid'] = $dados;
-      $this->db->insert('tblgrade', $grade);
-      /*echo "<pre>";
-      var_dump($grade);
-      echo "</pre>";*/
-    }
     return $erro = $this->db->error();     
   }
 
-  public function atualizar($id, $dadoscurso, $dadosperiodo, $dadosdisc)
+  public function atualizar($id, $dadoscurso, $dadosperiodo)
   {
     $this->db->where('cursoid', $id);
     $this->db->update('tblcurso', $dadoscurso);
@@ -84,20 +63,11 @@ class Curso_model extends CI_Model {
     $this->db->where('cursoid', $id);
     $this->db->update('tblfiltroperiodo', $dadosperiodo);
     
-    $this->db->where('cursoid', $id);
-    $this->db->delete('tblgrade');
-    foreach ($dadosdisc as $dados) {
-      $grade['cursoid'] = $id;
-      $grade['disciplinaid'] = $dados;
-      $this->db->insert('tblgrade', $grade);
-    }
     return $erro = $this->db->error();     
   }
 
   public function excluir($id)
   {   
-    $this->db->where('cursoid', $id);
-    $this->db->delete('tblgrade');
     $this->db->where('cursoid', $id);
     $this->db->delete('tblfiltroperiodo');
     $this->db->where('cursoid', $id);

@@ -21,14 +21,11 @@
         <th>PERIODOS</th>
         <th></th>                    
         <th></th>                    
-        <th></th>                    
       </tr>';       
       foreach($curso as $curso) {
         echo "<tr>";
         echo '<td>'.$curso['cursodesc'].'</td>';
         echo '<td>'.$curso['periododesc'].'</td>';
-        $atts = array('title' => 'Grade','class' => 'pull-left btn btn-success');
-        echo '<td>'.anchor('admin1/Cursos/grade/'.$curso['cursoid'], '<i class="fa fa-graduation-cap fa-fw fa-lg"></i>&nbsp;Grade', $atts).'</td>';
         $atts = array('title' => 'Editar','class' => 'pull-left btn btn-primary');
         echo '<td>'.anchor('admin1/Cursos/editar/'.$curso['cursoid'], '<i class="fa fa-edit fa-fw fa-lg"></i>&nbsp;Editar', $atts).'</td>';
         $atts = array('title' => 'Excluir','class' => 'pull-left btn btn-danger');
