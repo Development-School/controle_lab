@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 // $config['getByModel'] = array('InfoSite_model', 'info');
 $config['template']   = 'layouts/default.html';
-$config['header']     = 'layouts/header2.html';
+$config['header']     = 'navbar.html';
 $config['footer']     = 'layouts/footer.html';
 $config['extencao']   = '.html';
 $config['minificar']  = TRUE;

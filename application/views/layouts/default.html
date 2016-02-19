@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+  <title><?= (isset($titulo) and $titulo) ? $titulo : '' ?></title>
   <meta charset="utf-8">
   <meta name="author" content="Escritório Escola">
   <meta name="keywords" content="Escritório Escola">
@@ -46,5 +47,15 @@
 <?php echo $layout['header'] ?>
 <?php echo $layout['content'] ?>
 <?php echo $layout['footer'] ?>
+<script type="text/javascript">
+$(function() {
+    // Highlight the active nav link.
+    var url = window.location.pathname;
+    // var filename = url.substr(url.lastIndexOf('/') + 1);
+    // console.log(url);
+    $('.navbar a[href$="' + url + '"]').parent().addClass("active");
+    $('.active').closest('li.dropdown').addClass('active');
+});
+</script>
 </body>
 </html>

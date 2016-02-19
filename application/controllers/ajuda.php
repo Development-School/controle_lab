@@ -1,30 +1,25 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Ajuda extends CI_Controller {  
-  /**
-   * Ajuda - Area Administrativa
-   *
-   * @package     CodeIgniter
-   * @subpackage  Controllers
-   * @category    Area Administrativa
-   * @author      Escritório Escola Dev Team
-   * @link        http://www.semanatrans.esy.es
-   * 
-   * Este Controller foi projetado para exibir os eventos!
-   */
-  public function __construct(){
+class Ajuda extends CI_Controller
+{
+  public function __construct()
+  {
     parent::__construct();
-    /* Esta condição verifica se algum
-     * Usuario está logado
-     * Caso não esteja logado é carregada a view de login
-     */           
-    if(!isset($_SESSION['logado'])){            
-      redirect(base_url());            
-    }        
+    $tipo = $_SESSION['tipo'];
+    if ($tipo == 2) {
+      $this->layout->setHeader('navbar_professor');
+    }
+    if ($tipo == 3) {
+      $this->layout->setHeader('navbar_tecnico');
+    }
+    if(!isset($_SESSION['logado'])){
+      redirect(base_url());
+    }
   }
 
   public function index(){
-    $this->load->view('ajuda');
+    $this->layout->view('ajuda');
   }
 }
 /* End of file Ajuda.php */

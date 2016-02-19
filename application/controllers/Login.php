@@ -9,30 +9,30 @@ class Login extends CI_Controller {
    * @category    Home - Tela de Login
    * @author      Escritório Escola Dev Team
    * @link        http://www.semanatrans.esy.es
-   * 
+   *
    * Este Controller foi projetado para ser o sistema de login!
    */
-	
+
 	public function index()	{
-		//carrega a view login_de_usuario.php       
+		//carrega a view login_de_usuario.php
 	   $this->load->view('login_de_usuario');
 	}
-    
+
   public function logar() {
 		// Regras da Validação
     $this->form_validation->set_rules('cpf', 'CPF', 'required|valid_cpf' );
     $this->form_validation->set_rules('senha', 'SENHA', 'required');
-    
+
     if ($this->form_validation->run() == FALSE) {
-    	//se não houver cpf ou senha retornara com msg de erro            
+    	//se não houver cpf ou senha retornara com msg de erro
         $this->load->view('login_de_usuario');
-    } else {          
+    } else {
       $cpf   = $this->input->post('cpf');
 		  $senha = $this->input->post('senha');
 
-      //Consulta no Banco de Dados                            
+      //Consulta no Banco de Dados
       $this->load->model('Usuarios');
-      $usuario = $this->Usuarios->login($cpf,$senha);                        
+      $usuario = $this->Usuarios->login($cpf,$senha);
 
       if(count($usuario)===1){ // VERIFICA LOGIN E SENHA
         //Adiciona o cpf ao cookie do usuario
@@ -43,8 +43,8 @@ class Login extends CI_Controller {
           'tipo'=> $usuario[0]->tipoid,
           'logado'=>TRUE
         );//array com os dados do cookie
-        $this->session->set_userdata($dados);//passando a array para o cookie 
-        switch ($_SESSION['tipo']) {
+        $this->session->set_userdata($dados);//passando a array para o cookie
+/*        switch ($_SESSION['tipo']) {
           case 1:
             redirect(base_url("admin1/paineladm"));
             break;
@@ -53,19 +53,20 @@ class Login extends CI_Controller {
             break;
           case 3:
             redirect(base_url("admin3/paineladm"));
-            break;          
-        }
+            break;
+          }
+*/        redirect('admin/paineladm');
         //redirect(base_url("paineladm"));
         }
       else{
         $data['erro'] = 'CPF ou Senha incorretos';
         $this->load->view('login_de_usuario',$data);
       }
-    }    
-  } 
-    
+    }
+  }
+
   public function sair(){
-    //Função de logout do sistema        
+    //Função de logout do sistema
     $this->session->sess_destroy();
     redirect(base_url(),'refresh');
   }
