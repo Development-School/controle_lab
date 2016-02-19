@@ -70,8 +70,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-if ($_SERVER['HTTP_HOST'] == 'localhost'){
-	$active_group = 'local';	
+if ($_SERVER['HTTP_HOST'] == 'ilab.controle'){
+	$active_group = 'local';
 }
 else{
 	$active_group = 'producao';

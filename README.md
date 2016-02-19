@@ -1,5 +1,5 @@
-![wxWidgets Logo](http://rodrigom.tk/controle_lab/assets/imgs/logo.jpg)
-# Sistema Gerenciador de Laboratórios 
+![Logo](http://rodrigom.tk/controle_lab/assets/imgs/logo.png)
+# Sistema Gerenciador de Laboratórios
 
 [![Version 0.9](https://img.shields.io/badge/version-0.9-blue.svg)](https://github.com/esc2/controle_lab/releases/tag/v0.9-beta)
 [![requirement](https://img.shields.io/badge/Base-Codeigniter-orange.svg)](https://github.com/bcit-ci/CodeIgniter)

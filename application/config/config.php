@@ -22,7 +22,7 @@
 |
 */
 
-$allowed_domains = array('rodrigom.tk', 'rodrigoalves.me');
+$allowed_domains = array('rodrigom.tk', 'rodrigoalves.me','ilab.controle');
 $default_domain  = 'localhost';
 if (in_array($_SERVER['HTTP_HOST'], $allowed_domains, TRUE))
 {
@@ -35,11 +35,11 @@ else
 
 if ( ! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
 {
-  $config['base_url'] = 'https://'.$domain .'/controle_lab';
+  $config['base_url'] = 'https://'.$domain;
 }
 else
 {
-  $config['base_url'] = 'http://'.$domain .'/controle_lab';
+  $config['base_url'] = 'http://'.$domain;
 }
 
 /*
