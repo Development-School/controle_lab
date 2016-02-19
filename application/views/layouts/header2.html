@@ -1,0 +1,12 @@
+<header id="home">
+<h1><?= $titulo ?></h1>
+<nav>
+  <ul>
+    <?php $l = $this->router->method; ?>
+    <li><a <?= ($l=='index')   ? 'class="active"' : '' ?> href="<?= base_url('welcome') ?>">Home</a></li>
+    <li><a <?= ($l=='Blog')    ? 'class="active"' : '' ?> href="<?= base_url('welcome/Blog') ?>">Blog</a></li>
+    <li><a <?= ($l=='Contato') ? 'class="active"' : '' ?> href="<?= base_url('welcome/Contato') ?>">Contato</a></li>
+    <li><a <?= ($l=='Sobre')   ? 'class="active"' : '' ?> href="<?= base_url('welcome/Sobre') ?>">Sobre</a></li>
+  </ul>
+</nav>
+</header>

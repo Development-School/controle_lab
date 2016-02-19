@@ -6,6 +6,8 @@ application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
 
+application/config/email.php
+
 # =========================
 # Operating System Files
 # =========================
@@ -57,6 +59,3 @@ $RECYCLE.BIN/
 .ftppass
 
 node_modules
-
-application/cache/*
-application/logs/*

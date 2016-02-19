@@ -2,11 +2,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
+  public function __construct()
+  {
+    parent::__construct();
+    $this->layout->setTemplate('site/template');
+    $this->layout->setHeader('site/menu');
+  }
 
 	public function index(){
-		$this->load->view('site/menu');
-		$this->load->view('site/home');
-		$this->load->view('footer');
+		$this->layout->view('site/home');
 	}
 	public function calendario($ano= '',$mes = ''){
     if ($mes == '' && $ano == '') {
@@ -14,41 +18,35 @@ class Home extends CI_Controller {
       $ano = date('Y');
     }
     $dados['reservado'] = '';
-    $dados['calendario'] = $this->mycalendario($ano,$mes);		
-		$this->load->view('site/calendario',$dados);
+    $dados['calendario'] = $this->mycalendario($ano,$mes);
+		$this->layout->view('site/calendario',$dados);
 	}
 	public function lista(){
-		$this->load->view('site/menu');
-		$this->load->view('site/lista');
-		$this->load->view('footer');
-	}
-	public function sobre(){
-		$this->load->view('site/menu');
-		$this->load->view('site/sobre');
-		$this->load->view('footer');
-	}
-	public function ajuda(){
-    $this->load->view('site/menu');
-    $this->load->view('site/ajuda');
-    $this->load->view('footer');
-  }
-  public function login(){
-		$this->load->view('site/menu');
-		$this->load->view('site/login');
-		$this->load->view('footer');
-	}
-	public function laboratorios(){
-		$this->load->view('site/menu');
-		$this->load->view('site/lista');
-		$this->load->view('footer');
+		$this->layout->view('site/lista');
 	}
 
-	public function mycalendario($ano,$mes){    
+	public function sobre(){
+		$this->layout->view('site/sobre');
+	}
+
+  public function ajuda(){
+    $this->layout->view('ajuda');
+  }
+
+  public function login(){
+		$this->layout->view('site/login');
+	}
+
+	public function laboratorios(){
+		$this->layout->view('site/lista');
+	}
+
+	public function mycalendario($ano,$mes){
     if ($mes == '' && $ano == '') {
       $mes = date('m');
       $ano = date('Y');
     }
-    
+
     $prefs['show_next_prev'] = TRUE;
     $prefs['next_prev_url'] = base_url('Home/calendario');
     $prefs['day_type'] = 'long';
@@ -82,7 +80,7 @@ class Home extends CI_Controller {
       {cal_row_end}</tr>{/cal_row_end}
 
       {table_close}</table>{/table_close}
-    ';    
+    ';
     $this->load->library('calendar', $prefs);
     $this->load->model('reserva');
     $dias = $this->reserva->reserva_mes($ano,$mes);
@@ -90,17 +88,17 @@ class Home extends CI_Controller {
     foreach ($dias as $d) {
       if ($d['dia'] < 10) {
         $data += array($d['dia'] => base_url('Home/reservas_dia').'/'.$ano.$mes.'0'.$d['dia'],);
-      } 
+      }
       else $data += array($d['dia'] => base_url('Home/reservas_dia').'/'.$ano.$mes.$d['dia'],);
     }
     return $this->calendar->generate($ano,$mes,$data);
   }
 
   public function reservas_dia($dia){
-    $ano = date('Y',strtotime($dia));  
-    $mes = date('m',strtotime($dia));    
+    $ano = date('Y',strtotime($dia));
+    $mes = date('m',strtotime($dia));
     $this->load->model('reserva');
-    $reservado = $this->reserva->reserva_dia($dia);  
+    $reservado = $this->reserva->reserva_dia($dia);
     //$dados['calendario'] = $this->mycalendario($ano,$mes);
     //$this->load->view('site/calendario',$dados);
     echo '<div class="modal-header">
@@ -136,6 +134,6 @@ class Home extends CI_Controller {
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
         </div>';
-    return;    
+    return;
   }
 }
