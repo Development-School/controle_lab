@@ -1,21 +1,11 @@
 ﻿<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Login extends CI_Controller {
-  /**
-   * Home - Tela de Login
-   *
-   * @package     CodeIgniter
-   * @subpackage  Controllers
-   * @category    Home - Tela de Login
-   * @author      Escritório Escola Dev Team
-   * @link        http://www.semanatrans.esy.es
-   *
-   * Este Controller foi projetado para ser o sistema de login!
-   */
-
+class Login extends CI_Controller
+{
 	public function index()	{
 		//carrega a view login_de_usuario.php
-	   $this->load->view('login_de_usuario');
+     $this->layout->setHeader();
+	   $this->layout->view('login_de_usuario');
 	}
 
   public function logar() {
@@ -44,20 +34,8 @@ class Login extends CI_Controller {
           'logado'=>TRUE
         );//array com os dados do cookie
         $this->session->set_userdata($dados);//passando a array para o cookie
-/*        switch ($_SESSION['tipo']) {
-          case 1:
-            redirect(base_url("admin1/paineladm"));
-            break;
-          case 2:
-            redirect(base_url("admin2/paineladm"));
-            break;
-          case 3:
-            redirect(base_url("admin3/paineladm"));
-            break;
-          }
-*/        redirect('admin/paineladm');
-        //redirect(base_url("paineladm"));
-        }
+        redirect('admin/paineladm');
+      }
       else{
         $data['erro'] = 'CPF ou Senha incorretos';
         $this->load->view('login_de_usuario',$data);

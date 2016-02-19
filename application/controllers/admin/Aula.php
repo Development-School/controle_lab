@@ -9,15 +9,9 @@ class Aula extends CI_Controller
     parent::__construct();
     $local = $this->router->class.'/'.$this->router->method;
     $tipo = $_SESSION['tipo'];
-    if ($tipo == 2) {
-      $this->layout->setHeader('navbar_professor');
-    }
-    if ($tipo == 3) {
-      $this->layout->setHeader('navbar_tecnico');
-    }
-    if ( !checkPermissao($tipo, $local) ) {
-      redirect(base_url());
-    }
+    if ($tipo == 2) $this->layout->setHeader('navbar_professor');
+    if ($tipo == 3) $this->layout->setHeader('navbar_tecnico');
+    if ( !checkPermissao($tipo, $local) ) redirect(base_url());
   }
 
   public function index($ano= '',$mes = ''){
@@ -28,15 +22,6 @@ class Aula extends CI_Controller
     $dados['reservado'] = '';
     $dados['calendario'] = $this->calendario($ano,$mes);
     $this->layout->view('admin/aula_view',$dados);
-    /*
-    $this->load->model('reserva');
-    $reservado = $this->reserva->reserva_mes(2015,07);
-    echo "<pre>";
-    print_r ($reservado);
-    echo "</pre>";
-    foreach ($reservado as $diarese) {
-      echo $diarese['dia'].'<br>';
-    }*/
   }
 
   public function calendario($ano,$mes){

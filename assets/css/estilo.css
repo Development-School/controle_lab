@@ -11,9 +11,9 @@ body{
 }
 h1{
   font-style: italic;
-  letter-spacing: -1px;               
+  letter-spacing: -1px;
 }
-header{
+.header{
   position: static;
   margin: 50px 0;
 }
@@ -35,7 +35,7 @@ header{
   width: 697px;
   text-align: center;
   text-transform: uppercase;
-  color: #474747; 
+  color: #474747;
 }
 .title-fluid h1{
   letter-spacing: 0.2em;
@@ -43,16 +43,16 @@ header{
   font-size: 2em;
   margin: 0.67em 0;
 }
-legend{  
+legend{
   font-size: 20px;
-  font-style: italic; 
-  color:#000;  
+  font-style: italic;
+  color:#000;
 }
 .date-input-buttons{
   float:right;
   margin-top: 8px;
 }
- 
+
 .logo{
   width: 70%;
 }
@@ -63,16 +63,30 @@ legend{
 }
 
 /*Rodapé do Site*/
-.main{
-  padding-bottom: 225px;
+html, body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
 }
-footer{  
-  position: absolute;
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -200px;
+  /* Pad bottom by footer height */
+  padding: 0 0 200px;
+}
+
+.main{
+  padding-bottom: 25px;
+}
+
+footer{
   bottom: 0px;
-  width: 100%;  
-  height: 200px;   
+  width: 100%;
+  height: 200px;
   background-color: rgb(68, 65, 65);
-  color: #fff;   
+  color: #fff;
 }
 .footer{
   padding-top: 50px;
@@ -102,7 +116,7 @@ footer .esc2, .esc2 img{
   float: right;
 }
 /*Css que se aplica em celulares*/
-div+fieldset{  
+div+fieldset{
   margin-top: 100px;
 }
 .nome_usuario{
@@ -130,7 +144,7 @@ div+fieldset{
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  background: white;    
+  background: white;
   animation: ripple-animation 2s;
 }
 
@@ -143,7 +157,7 @@ div+fieldset{
     transform: scale(100);
     opacity: 0;
   }
-}  
+}
 
 /* CSS que se aplica a celulares*/
 @media all and (max-width: 768px) {

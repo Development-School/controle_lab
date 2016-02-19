@@ -1,15 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Teste extends CI_Controller {
-
+class Teste extends CI_Controller
+{
 	public function index()
 	{
-		echo "<pre>";
-		print_r ($_SERVER);
-		echo "</pre>";
+    $this->layout->setHeader();
+		setMensagem('Home', 'ola mundo !', false, '100000');
 	}
-
 }
 
 /* End of file Teste.php */

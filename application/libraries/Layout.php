@@ -66,14 +66,14 @@ class layout
     return $this->view($this->mensagem,$dados);
   }
 
-  public function setFooter($view)
+  public function setFooter($view = '')
   {
     $ext = pathinfo($view, PATHINFO_EXTENSION);
     if($ext === '' or $ext === 'view') $view = ($view) ? $view.$this->extencao : '';
     return $this->footer = $view;
   }
 
-  public function setHeader($view)
+  public function setHeader($view = '')
   {
     $ext = pathinfo($view, PATHINFO_EXTENSION);
     if($ext === '' or $ext === 'view') $view = ($view) ? $view.$this->extencao : '';

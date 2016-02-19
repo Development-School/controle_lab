@@ -8,15 +8,9 @@ class Material extends CI_Controller {
     parent::__construct();
     $local = $this->router->class.'/'.$this->router->method;
     $tipo = $_SESSION['tipo'];
-    if ($tipo == 2) {
-      $this->layout->setHeader('navbar_professor');
-    }
-    if ($tipo == 3) {
-      $this->layout->setHeader('navbar_tecnico');
-    }
-    if ( !checkPermissao($tipo, $local) ) {
-      redirect(base_url());
-    }
+    if ($tipo == 2) $this->layout->setHeader('navbar_professor');
+    if ($tipo == 3) $this->layout->setHeader('navbar_tecnico');
+    if ( !checkPermissao($tipo, $local) ) redirect(base_url());
   }
 
   public function index() {
@@ -64,10 +58,10 @@ class Material extends CI_Controller {
 
         /* Chama a função inserir do modelo */
         if ($this->Lab_model->atualiza_material($id, $data)) {
-          $dados['local'] = 'admin/Material';
-          $dados['mensagem'] = 'Material Atualizado com sucesso!';
-          $this->load->view('mensagem_ok',$dados);
-        } else {echo "error";}
+          setMensagem('admin/material', 'Material Atualizado com sucesso!');
+        } else {
+          setMensagem('admin/material', 'Ocorreu um Erro', TRUE);
+        }
       }
       else{
         $data['materialnome'] = $this->input->post('nome');
@@ -78,10 +72,10 @@ class Material extends CI_Controller {
 
         /* Chama a função inserir do modelo */
         if ($this->Lab_model->cadastro_material($data)) {
-          $dados['local'] = 'admin/Material';
-          $dados['mensagem'] = 'Material cadastrado com sucesso!';
-          $this->load->view('mensagem_ok',$dados);
-        } else {echo "error";}
+          setMensagem('admin/material', 'Material cadastrado com sucesso!');
+        } else {
+          setMensagem('admin/material', 'Ocorreu um Erro', TRUE);
+        }
       }
     }
   }
@@ -92,9 +86,9 @@ class Material extends CI_Controller {
 
     /* Chama a função inserir do modelo */
     if ($this->Lab_model->apaga_material($id)) {
-      redirect(base_url('admin/Material'));
+      setMensagem('admin/material', 'Material apagado com sucesso!');
     } else {
-      echo "error";
+      setMensagem('admin/material', 'Ocorreu um Erro', TRUE);
     }
   }
 }

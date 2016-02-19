@@ -9,15 +9,9 @@ class Labs extends CI_Controller
     parent::__construct();
     $local = $this->router->class.'/'.$this->router->method;
     $tipo = $_SESSION['tipo'];
-    if ($tipo == 2) {
-      $this->layout->setHeader('navbar_professor');
-    }
-    if ($tipo == 3) {
-      $this->layout->setHeader('navbar_tecnico');
-    }
-    if ( !checkPermissao($tipo, $local) ) {
-      redirect(base_url());
-    }
+    if ($tipo == 2) $this->layout->setHeader('navbar_professor');
+    if ($tipo == 3) $this->layout->setHeader('navbar_tecnico');
+    if ( !checkPermissao($tipo, $local) ) redirect(base_url());
   }
 
   public function index(){
@@ -84,10 +78,10 @@ class Labs extends CI_Controller
 
         /* Chama a função inserir do modelo */
         if ($this->Lab_model->atualiza($id, $data)) {
-          $dados['local'] = 'admin/Labs';
-          $dados['mensagem'] = 'Laboratorio Atualizado com sucesso!';
-          $this->load->view('mensagem_ok',$dados);
-        } else {echo "error";}
+          setMensagem('admin/labs', 'Laboratorio Atualizado com sucesso!');
+        } else {
+          setMensagem('admin/labs', 'Ocorreu um Erro', TRUE);
+        }
       }
       else{
         $data['labnome'] = $this->input->post('nome');
@@ -100,10 +94,10 @@ class Labs extends CI_Controller
 
         /* Chama a função inserir do modelo */
         if ($this->Lab_model->cadastro($data)) {
-          $dados['local'] = 'admin/Labs';
-          $dados['mensagem'] = 'Laboratorio cadastrado com sucesso!';
-          $this->load->view('mensagem_ok',$dados);
-        } else {echo "error";}
+          setMensagem('admin/labs', 'Laboratorio cadastrado com sucesso!');
+        } else {
+          setMensagem('admin/labs', 'Ocorreu um Erro', TRUE);
+        }
       }
     }
   }
@@ -111,12 +105,11 @@ class Labs extends CI_Controller
   public function apaga($id){
     /* Carrega o modelo */
     $this->load->model('Lab_model');
-
     /* Chama a função inserir do modelo */
     if ($this->Lab_model->apaga($id)) {
-      redirect(base_url('admin/Labs'));
+      setMensagem('admin/labs', 'Laboratorio apagado com sucesso!');
     } else {
-      echo "error";
+      setMensagem('admin/labs', 'Ocorreu um Erro', TRUE);
     }
   }
 }

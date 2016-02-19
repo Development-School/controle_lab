@@ -8,15 +8,9 @@ class Paineladm extends CI_Controller
     parent::__construct();
     $local = $this->router->class.'/'.$this->router->method;
     $tipo = $_SESSION['tipo'];
-    if ($tipo == 2) {
-      $this->layout->setHeader('navbar_professor');
-    }
-    if ($tipo == 3) {
-      $this->layout->setHeader('navbar_tecnico');
-    }
-    if ( !checkPermissao($tipo, $local) ) {
-      redirect(base_url());
-    }
+    if ($tipo == 2) $this->layout->setHeader('navbar_professor');
+    if ($tipo == 3) $this->layout->setHeader('navbar_tecnico');
+    if ( !checkPermissao($tipo, $local) ) redirect(base_url());
   }
 
   public function index() {
@@ -31,9 +25,9 @@ class Paineladm extends CI_Controller
     $this->load->model('reserva');
     /* Chama a função inserir do modelo */
     if ($this->reserva->apaga($id)) {
-      redirect('admin/paineladm');
+      setMensagem('admin/paineladm', 'Reserva apagado com sucesso!');
     } else {
-      echo "error";
+      setMensagem('admin/paineladm', 'Ocorreu um Erro', TRUE);
     }
   }
 }

@@ -8,15 +8,9 @@ class Cursos extends CI_Controller
     parent::__construct();
     $local = $this->router->class.'/'.$this->router->method;
     $tipo = $_SESSION['tipo'];
-    if ($tipo == 2) {
-      $this->layout->setHeader('navbar_professor');
-    }
-    if ($tipo == 3) {
-      $this->layout->setHeader('navbar_tecnico');
-    }
-    if ( !checkPermissao($tipo, $local) ) {
-      redirect(base_url());
-    }
+    if ($tipo == 2) $this->layout->setHeader('navbar_professor');
+    if ($tipo == 3) $this->layout->setHeader('navbar_tecnico');
+    if ( !checkPermissao($tipo, $local) ) redirect(base_url());
   }
 
 	public function index()
@@ -40,7 +34,6 @@ class Cursos extends CI_Controller
 		//Regras da Validação
     $this->form_validation->set_rules('nome', 'NOME', 'required');
     $this->form_validation->set_rules('periodo', 'PERIODOS DO CURSO', 'required');
-    $this->form_validation->set_rules('disciplina', 'DISCIPLINA', 'required');
 
     if ($this->form_validation->run() == FALSE) {
 			if (isset($_POST['id'])) {
@@ -53,30 +46,22 @@ class Cursos extends CI_Controller
     		$idcurso = $this->input->post('id');
     		$tblcurso['cursodesc'] = $this->input->post('nome');
 		    $tblfiltroperiodo['periodoid'] = $this->input->post('periodo');
-		    //array_unique — Remove o valores duplicados de um array
-		    $tblgrade = array_unique($this->input->post('disciplina[]'));
 		    $this->load->model('Curso_model');
-		     if ($this->Curso_model->atualizar($idcurso, $tblcurso, $tblfiltroperiodo, $tblgrade)) {
-		      $dados['local'] = 'admin/Cursos';
-		      $dados['mensagem'] = 'Curso Atualizado com sucesso!';
-		      $this->load->view('mensagem_ok',$dados);
+		     if ( $this->Curso_model->atualizar($idcurso, $tblcurso, $tblfiltroperiodo) ) {
+          setMensagem('admin/cursos', 'Curso Atualizado com sucesso!');
 		    } else {
-		      echo "error";
+		      setMensagem('admin/cursos', 'Ocorreu um Erro', TRUE);
 		    }
     	}
     	else{
 				$tblcurso['cursodesc'] = $this->input->post('nome');
 		    $tblfiltroperiodo['periodoid'] = $this->input->post('periodo');
-		    //array_unique — Remove o valores duplicados de um array
-		    $tblgrade = array_unique($this->input->post('disciplina[]'));
 		    $this->load->model('Curso_model');
 		    /* Chama a função inserir do modelo */
-		    if ($this->Curso_model->cadastro($tblcurso, $tblfiltroperiodo, $tblgrade)) {
-		      $dados['local'] = 'admin/Cursos';
-		      $dados['mensagem'] = 'Curso Cadastrado com sucesso!';
-		      $this->load->view('mensagem_ok',$dados);
-		    } else {
-		      echo "error";
+		    if ( $this->Curso_model->cadastro($tblcurso, $tblfiltroperiodo) ) {
+          setMensagem('admin/cursos', 'Curso Cadastrado com sucesso!');
+        } else {
+          setMensagem('admin/cursos', 'Ocorreu um Erro', TRUE);
 		    }
 	  	}
   	}
@@ -86,9 +71,9 @@ class Cursos extends CI_Controller
 	{
     $this->load->model('Curso_model');
     if ($this->Curso_model->excluir($id)) {
-      redirect(base_url('admin/Cursos'));
+      setMensagem('admin/cursos', 'Curso Apagado com sucesso!');
     } else {
-      echo "error";
+      setMensagem('admin/cursos', 'Ocorreu um Erro', TRUE);
     }
 	}
 

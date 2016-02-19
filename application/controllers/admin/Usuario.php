@@ -8,15 +8,9 @@ class Usuario extends CI_Controller
     parent::__construct();
     $local = $this->router->class.'/'.$this->router->method;
     $tipo = $_SESSION['tipo'];
-    if ($tipo == 2) {
-      $this->layout->setHeader('navbar_professor');
-    }
-    if ($tipo == 3) {
-      $this->layout->setHeader('navbar_tecnico');
-    }
-    if ( !checkPermissao($tipo, $local) ) {
-      redirect(base_url());
-    }
+    if ($tipo == 2) $this->layout->setHeader('navbar_professor');
+    if ($tipo == 3) $this->layout->setHeader('navbar_tecnico');
+    if ( !checkPermissao($tipo, $local) ) redirect(base_url());
   }
 
   public function index() {
@@ -77,11 +71,9 @@ class Usuario extends CI_Controller
 
         /* Chama a função inserir do modelo */
         if ($this->Usuarios->atualiza($id, $data)) {
-          $dados['local'] = 'admin/Usuario';
-          $dados['mensagem'] = 'Cadastro atualizado com sucesso!';
-          $this->load->view('mensagem_ok',$dados);
+          setMensagem('admin/usuario', 'Cadastro atualizado com sucesso!');
         } else {
-          echo "error";
+          setMensagem('admin/usuario', 'Ocorreu um Erro', TRUE);
         }
       }
       //Se não apenas cadastre
@@ -99,30 +91,25 @@ class Usuario extends CI_Controller
 
         /* Chama a função inserir do modelo */
         if ($this->Usuarios->cadastro($data)) {
-          $dados['local'] = 'admin/Usuario';
-          $dados['mensagem'] = 'Cadastro realizado com sucesso!';
-          $this->load->view('mensagem_ok',$dados);
-        } else {echo "error";}
+          setMensagem('admin/usuario', 'Cadastro realizado com sucesso!');
+        } else {
+          setMensagem('admin/usuario', 'Ocorreu um Erro', TRUE);
+        }
       }
     }
   }
 
   public function apaga($id){
     if ($id == $_SESSION['id']) {
-      $dados['local'] = 'admin/Usuario';
-      $dados['mensagem'] = 'Erro! vc nao pode se apagar!';
-      $dados['erro'] = true;
-      $this->load->view('mensagem_ok',$dados);
+      setMensagem('admin/usuario', 'Erro! vc nao pode se apagar!', TRUE);
     }
     else{
       /* Carrega o modelo */
       $this->load->model('Usuarios');
       /* Chama a função inserir do modelo */
-      if ($this->Usuarios->apaga($id)) {
-        redirect(base_url('admin/Usuario'));
-      } else {
-        echo "error";
-      }
+      ($this->Usuarios->apaga($id)) ?
+        setMensagem('admin/usuario', 'Usuario apagado com sucesso!'):
+        setMensagem('admin/usuario', 'Ocorreu um Erro', TRUE);
     }
   }
 }
