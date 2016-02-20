@@ -1,21 +1,23 @@
-﻿<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+﻿<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller
 {
-	public function index()	{
-		//carrega a view login_de_usuario.php
-     $this->layout->setHeader();
-	   $this->layout->view('login_de_usuario');
+	public function index()
+  {
+    $this->layout->setHeader();
+    $this->layout->view('login_de_usuario');
 	}
 
-  public function logar() {
+  public function logar()
+  {
 		// Regras da Validação
     $this->form_validation->set_rules('cpf', 'CPF', 'required|valid_cpf' );
     $this->form_validation->set_rules('senha', 'SENHA', 'required');
 
     if ($this->form_validation->run() == FALSE) {
     	//se não houver cpf ou senha retornara com msg de erro
-        $this->load->view('login_de_usuario');
+        $this->index();
     } else {
       $cpf   = $this->input->post('cpf');
 		  $senha = $this->input->post('senha');

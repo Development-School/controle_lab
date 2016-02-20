@@ -22,11 +22,11 @@
 |
 */
 
-$allowed_domains = array('rodrigom.tk', 'rodrigoalves.me','ilab.controle');
-$default_domain  = 'localhost';
+$allowed_domains = array('rodrigom.tk', 'rodrigoalves.me');
+$default_domain  = 'ilab.controle';
 if (in_array($_SERVER['HTTP_HOST'], $allowed_domains, TRUE))
 {
-  $domain = $_SERVER['HTTP_HOST'];
+  $domain = $_SERVER['HTTP_HOST'].'/controle_lab';
 }
 else
 {
