@@ -54,8 +54,13 @@ $(function() {
     // Highlight the active nav link.
     var url = window.location.pathname;
     // var filename = url.substr(url.lastIndexOf('/') + 1);
-    // console.log(url);
-    $('.navbar a[href$="' + url + '"]').parent().addClass("active");
+    // console.log(url.indexOf('aula'));
+    if (url.indexOf('aula') == -1) {
+      $('.navbar a[href$="' + url + '"]').parent().addClass("active");
+    }
+    else{
+      $('.navbar a[href$="' + 'aula' + '"]').parent().addClass("active");
+    }
     $('.active').closest('li.dropdown').addClass('active');
 });
 </script>
