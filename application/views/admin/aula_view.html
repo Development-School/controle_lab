@@ -17,38 +17,36 @@
         <h4>Reservas <?php if($reservado){echo strftime('do dia %d de %B de %Y', strtotime($reservado[0]['data_aula']));}?></h4>
       </div>
       <div class="panel-body">
-        <?php
-        if($reservado){
-          foreach($reservado as $reserva){
-            echo '<dl class="dl-horizontal card ripple" data-ripple-color="#8ED8FF">
+        <?php if($reservado): ?>
+         <?php foreach($reservado as $reserva):  ?>
+            <dl class="dl-horizontal card ripple" data-ripple-color="#8ED8FF">
                       <dt>Data da Aula:</dt>
-                      <dd>'.utf8_encode(strftime('%A, %d de %B de %Y', strtotime($reserva['data_aula']))).'</dd>
+                      <dd><?php echo utf8_encode(strftime('%A, %d de %B de %Y', strtotime($reserva['data_aula'])))?></dd>
                       <dt>Professor:</dt>
-                      <dd>'.$reserva['nome'].'</dd>
+                      <dd><?php echo $reserva['nome']?></dd>
                       <dt>Curso:</dt>
-                      <dd>'.$reserva['cursodesc'].'</dd>
+                      <dd><?php echo $reserva['cursodesc']?></dd>
                       <dt>Disciplina:</dt>
-                      <dd>'.$reserva['disciplina'].'</dd>
+                      <dd><?php echo $reserva['disciplina']?></dd>
                       <dt>Periodo:</dt>
-                      <dd>'.$reserva['periododesc'].'</dd>
+                      <dd><?php echo $reserva['periododesc']?></dd>
                       <dt>Turno:</dt>
-                      <dd>'.$reserva['turnodesc'].'</dd>
+                      <dd><?php echo $reserva['turnodesc']?></dd>
                       <dt>Unidade:</dt>
-                      <dd>'.$reserva['unidadedesc'].'</dd>
+                      <dd><?php echo $reserva['unidadedesc']?></dd>
                       <dt>Laboratório:</dt>
-                      <dd>'.$reserva['labnome'].'</dd>
+                      <dd><?php echo $reserva['labnome']?></dd>
                       <dt>Tema:</dt>
-                      <dd>'.$reserva['titulo_aula'].'</dd>
+                      <dd><?php echo $reserva['titulo_aula']?></dd>
                       <dt>Descrição:</dt>
-                      <dd>'.$reserva['descricao'].'</dd>
-                    </dl><br><br>';
-          }
+                      <dd><?php echo $reserva['descricao']?></dd>
+                    </dl><br><br>
+         <?php endforeach ?>
 
-        }else{
-          echo 'Sem reservas';
-        }
+        <?php else: ?>
+          <div>Sem reservas</div>
 
-        ?>
+      <?php endif; ?>
         </div>
         </div>
       </div>

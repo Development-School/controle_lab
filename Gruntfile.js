@@ -1,5 +1,5 @@
-//var pngquant = require('imagemin-pngquant');
-//var mozjpeg = require('imagemin-mozjpeg');
+var pngquant = require('imagemin-pngquant');
+var mozjpeg = require('imagemin-mozjpeg');
 //var gifsicle = require('imagemin-gifsicle');
 
 module.exports = function(grunt) {
@@ -7,6 +7,22 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
+    imagemin:{
+      target: {
+        options: {
+          optimizationLevel: 3,
+          progressive: true,
+          use: [pngquant(), mozjpeg()]
+        }, // options
+        files: [{
+          expand: true,
+          cwd: 'assets/src_img/',
+          src: ['**/*.{png,jpg,jpeg,gif,svg}'],
+          dest: 'assets/imgs/'
+        }] // files
+      } // target
+    }, // imagemin
 
     ftpush: {
       build: {
@@ -19,9 +35,9 @@ module.exports = function(grunt) {
         dest: 'controle_lab',
         exclusions: [
           '**/.DS_Store',
-          '**/Thumbs.db', 
+          '**/Thumbs.db',
           'less',
-          'src_img',
+          'assets/src_img/',
           '.git',
           'controle_lab.sql',
           'README.md',
@@ -47,8 +63,9 @@ module.exports = function(grunt) {
 
   // Load the plugins.
   grunt.loadNpmTasks('grunt-ftpush');
+  grunt.loadNpmTasks('grunt-contrib-imagemin');
 
   // Default task(s).
   grunt.registerTask('ftp','ftpush');
-
+  grunt.registerTask('img','imagemin');
 };
