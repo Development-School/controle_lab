@@ -12,17 +12,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Links dos icones do site -->
   <link rel="icon" type="image/png" href="<?php echo base_url('assets/imgs/logo.png') ?>" sizes="16x16">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="msapplication-TileImage" content="<?php echo base_url('assets/imgs/favicons/mstile-144x144.png') ?>">
-  <meta name="theme-color" content="#ffffff">
   <!-- Bootstrap -->
   <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" >
   <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-theme.min.css') ?>" >
   <link rel="stylesheet" href="<?php echo base_url('assets/css/font-awesome.min.css') ?>" >
-  <script src="<?php echo base_url('assets/js/jquery.min.js') ?>"></script>
-  <script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
-  <!-- Bootstrap Dual Listbox -->
-  <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-duallistbox.min.css') ?>" >
   <!-- Estilo CSS -->
   <link rel="stylesheet" href="<?php echo base_url('assets/css/estilo.css') ?>" >
 
@@ -49,20 +42,6 @@
   <?php echo $layout['content'] ?>
 </div>
 <?php echo $layout['footer'] ?>
-<script type="text/javascript">
-$(function() {
-    // Highlight the active nav link.
-    var url = window.location.pathname;
-    // var filename = url.substr(url.lastIndexOf('/') + 1);
-    // console.log(url.indexOf('aula'));
-    if (url.indexOf('aula') == -1) {
-      $('.navbar a[href$="' + url + '"]').parent().addClass("active");
-    }
-    else{
-      $('.navbar a[href$="' + 'aula' + '"]').parent().addClass("active");
-    }
-    $('.active').closest('li.dropdown').addClass('active');
-});
-</script>
+  <script async defer type="text/javascript" src="<?php echo base_url('assets/js/ilab-admin.min.js') ?>"></script>
 </body>
 </html>

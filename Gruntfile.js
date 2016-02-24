@@ -8,6 +8,27 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    uglify: {
+      home: {
+        src: [
+          'assets/js/jquery-2.1.4.js',
+          'assets/js/bootstrap.min.js',
+          'assets/js/jquery.material-cards.js',
+          'assets/js/<%= pkg.title %>.js'
+        ],
+        dest: 'assets/js/<%= pkg.title %>.min.js'
+      },
+      admin: {
+        src: [
+          'assets/js/jquery-2.1.4.js',
+          'assets/js/bootstrap.min.js',
+          'assets/js/ripple.js',
+          'assets/js/<%= pkg.title %>.js'
+        ],
+        dest: 'assets/js/<%= pkg.title %>-admin.min.js'
+      }
+    },
+
     imagemin:{
       target: {
         options: {
@@ -64,8 +85,10 @@ module.exports = function(grunt) {
   // Load the plugins.
   grunt.loadNpmTasks('grunt-ftpush');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // Default task(s).
+  grunt.registerTask('default', ['uglify', 'imagemin']);
   grunt.registerTask('ftp','ftpush');
   grunt.registerTask('img','imagemin');
 };
