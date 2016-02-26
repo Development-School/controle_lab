@@ -58,5 +58,7 @@ $RECYCLE.BIN/
 .grunt
 .ftppass
 assets/imgs/
-
+assets/css/ilab*
+assets/js/*.min.js
+bower_components
 node_modules

@@ -4,28 +4,81 @@ var mozjpeg = require('imagemin-mozjpeg');
 
 module.exports = function(grunt) {
 
+  // Load the plugins.
+  require('load-grunt-tasks')(grunt);
+
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    bower:"bower_components",
+
     uglify: {
       home: {
         src: [
-          'assets/js/jquery-2.1.4.js',
-          'assets/js/bootstrap.min.js',
-          'assets/js/jquery.material-cards.js',
+          '<%= bower %>/jquery/dist/jquery.js',
+          '<%= bower %>/bootstrap-sass/assets/javascripts/bootstrap.js',
+          '<%= bower %>/material-cards/js/jquery.material-cards.js',
           'assets/js/<%= pkg.title %>.js'
         ],
         dest: 'assets/js/<%= pkg.title %>.min.js'
       },
       admin: {
         src: [
-          'assets/js/jquery-2.1.4.js',
-          'assets/js/bootstrap.min.js',
+          '<%= bower %>/jquery/dist/jquery.js',
+          '<%= bower %>/bootstrap-sass/assets/javascripts/bootstrap.js',
           'assets/js/ripple.js',
           'assets/js/<%= pkg.title %>.js'
         ],
         dest: 'assets/js/<%= pkg.title %>-admin.min.js'
+      }
+    },
+
+    sass: {
+      options: {
+        sourceMap: true
+      },
+      dist: {
+        files: {
+          'assets/css/<%= pkg.title %>.css': 'assets/sass/main.scss'
+        }
+      }
+    },
+
+    cssmin: {
+      options: {
+        shorthandCompacting: false,
+        roundingPrecision: -1
+      },
+      home: {
+        files: {
+          'assets/css/<%= pkg.title %>-home.min.css':
+          [
+            'assets/css/<%= pkg.title %>.css',
+            'assets/css/material-cards.css',
+            'assets/css/style.css'
+          ]
+        }
+      },
+      admin: {
+        files: {
+          'assets/css/<%= pkg.title %>-admin.min.css':
+          [
+            'assets/css/<%= pkg.title %>.css',
+            'assets/css/estilo.css'
+          ]
+        }
+      }
+    },
+
+    bowercopy: {
+      fonts:{
+        options: {
+          destPrefix: 'assets'
+        },
+        files: {
+          'fonts':'font-awesome/fonts'
+        }
       }
     },
 
@@ -57,7 +110,8 @@ module.exports = function(grunt) {
         exclusions: [
           '**/.DS_Store',
           '**/Thumbs.db',
-          'less',
+          '<%= bower %>',
+          'assets/sass',
           'assets/src_img/',
           '.git',
           'controle_lab.sql',
@@ -66,6 +120,7 @@ module.exports = function(grunt) {
           'grunt',
           'grunt.cmd',
           'package.json',
+          'bower.json',
           'Gruntfile.js',
           '.ftppass',
           '.gitattributes',
@@ -82,13 +137,8 @@ module.exports = function(grunt) {
     },
   });
 
-  // Load the plugins.
-  grunt.loadNpmTasks('grunt-ftpush');
-  grunt.loadNpmTasks('grunt-contrib-imagemin');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-
   // Default task(s).
-  grunt.registerTask('default', ['uglify', 'imagemin']);
+  grunt.registerTask('default', ['uglify', 'sass', 'imagemin', 'bowercopy', 'cssmin']);
   grunt.registerTask('ftp','ftpush');
   grunt.registerTask('img','imagemin');
 };

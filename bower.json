@@ -1,0 +1,25 @@
+{
+  "name": "controle_lab",
+  "description": "Sistema de controle Laboratórios da Facudade Pitagoras",
+  "main": "",
+  "authors": [
+    "Escritorio Escola"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/esc2/controle_lab",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.1",
+    "bootstrap-sass": "^3.3.6",
+    "font-awesome": "fontawesome#^4.5.0",
+    "material-cards": "*"
+  }
+}

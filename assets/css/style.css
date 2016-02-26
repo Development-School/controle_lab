@@ -6,6 +6,13 @@ body{
 	 background: rgb(240, 240, 240);
 	 padding-top: 30px;
 }
+
+ul{
+  padding: 0;
+}
+ul li{
+  margin: 8px 0;
+}
 .container{
 	margin: 0 auto;
 	max-width: 960px;
@@ -50,7 +57,7 @@ nav ul li a:link{
 }
 .menu-item:hover, .menu-item:active, .menu-item:visited {
 	box-shadow: 1px 1px 2px rgba (0,0,0,0.2);
-	margin-bottom: 4px; 
+	margin-bottom: 4px;
 	border-top: 3px solid #000;
 	padding-top: 10px;
 	transição: todos os 300ms aliviar-in-out;
@@ -79,13 +86,13 @@ article a, article a:hover{
 	clear: both;
 }
 article p{
-	padding: 0.5em 1em; 
-	font-weight: bold; 
+	padding: 0.5em 1em;
+	font-weight: bold;
 }
 article p:hover{
 	background-color: #ff8c00;
-	color: white; 
-	display: inline-block;  
+	color: white;
+	display: inline-block;
 	text-decoration: none;
 }
 
@@ -108,8 +115,8 @@ article p:hover{
 *Colunas Codepen
 *
 */
-/* 
-  Columns 
+/*
+  Columns
 */
 
 .col {
@@ -268,14 +275,14 @@ article p:hover{
 	list-style: none;
 }
 .button-rect{
-	display: block; 
-	font-weight: bold; 
-	padding: 0.5em 1em; 
+	display: block;
+	font-weight: bold;
+	padding: 0.5em 1em;
 	text-decoration: none;
-	margin-bottom: 0.5em; 
+	margin-bottom: 0.5em;
 }
-.button-labs { 
-	background-color: #999999; 
+.button-labs {
+	background-color: #999999;
 }
 .button-more{
 	background-color: #389739;
@@ -326,13 +333,13 @@ article p:hover{
 .main{
   padding-bottom: 250px;
 }
-footer{  
+footer{
   position: absolute;
   bottom: 0px;
-  width: 100%;  
-  height: 200px;   
+  width: 100%;
+  height: 200px;
   background-color: rgb(68, 65, 65);
-  color: #fff;   
+  color: #fff;
 }
 .footer{
 	padding-top: 50px;
@@ -458,18 +465,18 @@ footer .esc2, .esc2 img{
 		width: 100px;
 		height: 30px;
 		line-height: 30px;
-		text-decoration: none;	
-	} 
+		text-decoration: none;
+	}
 	.menu-item:hover, .menu-item:active{
 		overflow: hidden;
 		background: none;
-		margin-bottom: 4px; 
+		margin-bottom: 4px;
 		border-top: none;
 		padding-top: 10px;
 		/*transition: all 300ms;
 		transição: todos os 300ms aliviar-in-out;*/
 		text-decoration: none;
-	} 
+	}
 	/*colunas lab*/
 	.col.four {
 		width: 48%;
@@ -500,7 +507,7 @@ footer .esc2, .esc2 img{
   -ms-transform: translate(0, 0);
   transform: translate(0, 0);
 }
- 
+
 #control-nav:checked ~ nav {
   -webkit-transform: translate(0, 0);
   -ms-transform: translate(0, 0);

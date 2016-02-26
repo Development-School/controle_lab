@@ -11,15 +11,9 @@
 	<!-- Links dos icones do site -->
 	<link rel="icon" type="image/png" href="<?php echo base_url('assets/imgs/logo.png') ?>" sizes="16x16">
 	<!-- Bootstrap -->
-	<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" >
-	<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-theme.min.css') ?>" >
-	<link rel="stylesheet" href="<?php echo base_url('assets/css/font-awesome.min.css') ?>" >
-	<link rel="stylesheet" href="<?php echo base_url('assets/css/normalize.css') ?>" >
-	<link rel="stylesheet" href="<?php echo base_url('assets/css/style.css') ?>" >
-  <!-- material-cards -->
+	<link rel="stylesheet" href="<?php echo base_url('assets/css/ilab-home.min.css') ?>" >
   <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,200,500,600,700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="<?php echo base_url('assets/css/material-cards.css') ?>">
-	<title>iLAB - Sistema de Gerenciamento de Laboratórios</title>
+	<title><?php echo (isset($titulo) and $titulo) ? $titulo : '' ?></title>
 </head>
 <body>
 <?php echo $layout['header'] ?>
